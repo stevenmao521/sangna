@@ -41,6 +41,7 @@
     <a class="layui-btn layui-btn-mini" lay-event="olist" >清单列表</a>
     {/if}
     <a href="{:url('edit')}?id={{d.id}}" class="layui-btn layui-btn-mini">{:lang('edit')}</a>
+    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
 </script>
 <!--字段js模版-->
 {$js_tmp}
