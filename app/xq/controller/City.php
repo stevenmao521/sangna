@@ -6,7 +6,7 @@ use think\Controller;
 use clt\Form;//表单
 use app\xq\controller\Helper as Helper;//工具�?
 
-class Streetgirl extends Common{
+class City extends Common{
     protected $modname; #模块名称
     protected $dao; #默认模型
     protected $fields; #字段
@@ -21,7 +21,7 @@ class Streetgirl extends Common{
         
         parent::_initialize();
         
-        $this->controller = "streetgirl";
+        $this->controller = "city";
         $this->modname = "刷单渠道";
         
         $this->moduleid = $this->mod[MODULE_NAME]; #模型id
