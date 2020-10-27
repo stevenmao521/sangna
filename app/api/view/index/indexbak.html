@@ -1,0 +1,60 @@
+{include file="common/head"/}
+
+<style>
+    
+    #main-box{
+        margin-top:10px;
+    }
+    #main-box .box-item{
+        padding:4px;
+    }
+    
+    #main-box .box-item .img-item{
+        width:100%;
+        height:100px;
+        overflow: hidden;
+    }
+    
+    #main-box .box-item .img-item img{
+        width:100%;
+    }
+    #main-box .box-item .item-title{
+        text-align: center;
+        color:#333;
+        line-height:25px;
+        height:25px;
+    }
+</style>
+
+<div class="layui-container" id="main-box">  
+    <div class="layui-row" >
+        {volist name="list" id="vo"}
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md4 box-item" >
+            <div class="img-item">
+                <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" />
+            </div>
+            <div class="item-title">
+                {$vo.title}
+            </div>
+        </div>
+        {/volist}
+        
+    </div>
+    
+</div>
+{include file="common/foot"/}
+
+<script>
+//一般直接写在一个js文件中
+layui.use(['layer', 'form'], function(){
+  var layer = layui.layer
+  ,form = layui.form;
+  
+});
+</script> 
+</body>
+</html>
+
+
+
+

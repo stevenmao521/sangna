@@ -1,0 +1,53 @@
+{include file="common/head"/}
+
+<style>
+    
+    #main-box{
+        margin-top:10px;
+    }
+    #main-box .box-item{
+        padding:4px;
+    }
+    
+    #main-box .box-item .img-item{
+        width:100%;
+        height:100px;
+        overflow: hidden;
+    }
+    
+    #main-box .box-item .img-item img{
+        width:100%;
+    }
+    #main-box .box-item .item-title{
+        text-align: center;
+        color:#333;
+        line-height:25px;
+        height:25px;
+    }
+</style>
+
+<fieldset class="layui-elem-field">
+    <legend>{$info.title}</legend>
+    <div class="layui-field-box">
+        {$info.details}
+        {volist name="$info['pics']" id="item"}
+        <img src="__PUBLIC__{$item}" style="width:100%;padding:20px;" >
+        {/volist}
+    </div>
+</fieldset>
+{include file="common/foot"/}
+
+<script>
+//一般直接写在一个js文件中
+layui.use(['layer', 'form'], function(){
+  var layer = layui.layer
+  ,form = layui.form;
+  
+});
+</script> 
+</body>
+</html>
+
+
+
+
