@@ -19,10 +19,21 @@ class Index extends Common{
     }
     
     public function index() {
-        $street = db("streetgirl")->select();
+        
+        #幻灯
+        $slide = db("streetgirl")->where("istrash=0 and isslide=1")->limit(4)->select();
+        #热门
+        $hot = db("streetgirl")->where("istrash=0 and ishot=1")->limit(4)->select();
+        #zj
+        $street = db("streetgirl")->where("istrash=0 and cates=1 and ishome=1")->limit(4)->select();
+        #hs
+        $hs = db("streetgirl")->where("istrash=0 and cates=2 and ishome=1")->limit(4)->select();
         
         return $this->fetch('',[
-            'list'=>$street
+            'slide'=>$slide,
+            'hot'=>$hot,
+            'street'=>$street,
+            'hs'=>$hs
         ]);
     }
     
@@ -35,6 +46,20 @@ class Index extends Common{
         }
         
         return $this->fetch('',['info'=>$info]);
+    }
+    
+    public function lists() {
+        $type = input("type");
+        if ($type == 1) {
+            $where = " cates=1 ";
+        } elseif ($type == 2) {
+            $where = " cates=2 ";
+        }
+        $lists = db("streetgirl")->where("istrash=0")->where($where)->select();
+        
+        return $this->fetch('',[
+            "lists"=>$lists
+        ]);
     }
     
 }

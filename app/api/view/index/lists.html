@@ -1,0 +1,70 @@
+{include file="common/head"/}
+
+
+<!-- 左导航 -->
+{include file="common/nav"/}
+<!-- end sidebar -->
+<!-- end sidebar -->
+
+<!-- product list -->
+<div class="product-list segments-page">
+    <div class="container">
+        <div class="row">
+            <div class="col s4">
+                <select class="browser-default">
+                    <option value="1">深圳</option>
+                    <option value="2">重庆</option>
+                </select>
+            </div>
+            <div class="col s4">
+                <select class="browser-default">
+                    <option value="1">沙田区</option>
+                    <option value="1">in the last Year</option>
+                    <option value="1">in the last Month</option>
+                    <option value="1">in the last Week</option>
+                    <option value="1">in the last Day</option>
+                </select>
+            </div>
+            <div class="col s4">
+                <select class="browser-default">
+                    <option value="1">沙田区</option>
+                    <option value="1">in the last Year</option>
+                    <option value="1">in the last Month</option>
+                    <option value="1">in the last Week</option>
+                    <option value="1">in the last Day</option>
+                </select>
+            </div>
+        </div>
+        
+        {volist name="lists" id="vo"}
+        <div class="content no-bb">
+            <div class="product-image">
+                <img src="__PUBLIC__/{$vo.pic}" alt="">
+            </div>
+            <div class="product-text">
+                <a href="{:url('detail')}?id={$vo.id}"><p>{$vo.title}</p></a>
+                <h5>$28</h5>
+                <a href="{:url('detail')}?id={$vo.id}"><button class="button">详细信息</button></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        {/volist}
+        
+        
+        <div class="pagination">
+            <ul>
+                <li class="disabled"><a href="">1</a></li>
+                <li><a href="">2</a></li>
+                <li><a href="">3</a></li>
+                <li><a href="">4</a></li>
+                <li><a href="">5</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- end product list -->
+<!-- end product details -->
+{include file="common/foot"/}
+
+</body>
+</html>

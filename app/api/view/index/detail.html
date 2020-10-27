@@ -1,53 +1,80 @@
 {include file="common/head"/}
 
-<style>
-    
-    #main-box{
-        margin-top:10px;
-    }
-    #main-box .box-item{
-        padding:4px;
-    }
-    
-    #main-box .box-item .img-item{
-        width:100%;
-        height:100px;
-        overflow: hidden;
-    }
-    
-    #main-box .box-item .img-item img{
-        width:100%;
-    }
-    #main-box .box-item .item-title{
-        text-align: center;
-        color:#333;
-        line-height:25px;
-        height:25px;
-    }
-</style>
 
-<fieldset class="layui-elem-field">
-    <legend>{$info.title}</legend>
-    <div class="layui-field-box">
-        {$info.details}
-        {volist name="$info['pics']" id="item"}
-        <img src="__PUBLIC__{$item}" style="width:100%;padding:20px;" >
-        {/volist}
+<!-- 左导航 -->
+{include file="common/nav"/}
+<!-- end sidebar -->
+<!-- end sidebar -->
+
+
+
+<!-- sidebar cart -->
+
+
+<!-- product details -->
+<div class="segments-page">
+    <div class="container">
+        <div class="product-details">
+            <div class="contents">
+                
+                <div class="desc-short">
+                    <h4>{$info.title}</h4>
+                    <h5>$28</h5>
+                    <p>{$info.mark}</p>
+                    <button class="button"><i class="fa fa-shopping-cart"></i>购买信息</button>
+                </div>
+                <div class="desc-long">
+                    <h5>详细信息</h5>
+                    <p>{$info.details}</p>
+                </div>
+            </div>
+            
+            <div class="content">
+                {volist name='$info.pics' id="vo"}
+                <img src="__PUBLIC__/{$vo}" alt="" style="width:100%;">
+                {/volist}
+            </div>
+            <div class="review">
+                <h5>Review</h5>
+                <div class="comment-people">
+                    <div class="contents">
+                        <div class="icon">
+                            <img src="__STATIC__/sangna/images/comment1.png" alt="">
+                        </div>
+                        <div class="text">
+                            <h6>John Doe</h6>
+                            <p class="date">2020年12月21日 21:32</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </div>
+                    </div>
+                    <div class="contents reply">
+                        <div class="icon">
+                            <img src="__STATIC__/sangna/images/comment2.png" alt="">
+                        </div>
+                        <div class="text">
+                            <h6>街王<i class="fa fa-bookmark"></i></h6>
+                            <p class="date">2020年12月21日 21:32</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="comment-post">
+                <div class="comment-title">
+                    <h5>留言</h5>
+                </div>
+                <form>
+                    <input type="text" placeholder="昵称">
+                    <input type="email" placeholder="邮箱">
+                    <textarea class="no-mb" cols="30" rows="10" placeholder="内容"></textarea>
+                    <button class="button">提交</button>
+                </form>
+            </div>
+        </div>
     </div>
-</fieldset>
+</div>
+<!-- end product details -->
 {include file="common/foot"/}
 
-<script>
-//一般直接写在一个js文件中
-layui.use(['layer', 'form'], function(){
-  var layer = layui.layer
-  ,form = layui.form;
-  
-});
-</script> 
 </body>
 </html>
-
-
-
-
