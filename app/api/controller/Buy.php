@@ -33,8 +33,8 @@ class Buy extends Common{
             "type" => 1,//1支付宝支付 3微信支付 2QQ钱包
             "price" => 0.1,//金额100元
             "param" => "",//自定义参数
-            "notify_url"=>"",//通知地址
-            "return_url"=>"http://long.fws.xiaoqing.online/admin/login/index.html",//跳转地址
+            "notify_url"=>"http://35.220.151.245/api/Notify/getdata",//通知地址
+            "return_url"=>"",//跳转地址
         ); //构造需要传递的参数
         
         ksort($data); //重新排序$data数组
