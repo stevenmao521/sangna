@@ -1,4 +1,4 @@
-{include file="common/head"/}
+{include file="common/headlist"/}
 
 
 <!-- 左导航 -->
@@ -7,31 +7,42 @@
 <!-- end sidebar -->
 
 <!-- product list -->
+<style>
+    .pagination li span {
+    box-shadow: 0 5px 8px rgba(128, 128, 128, 0.5);
+    border-radius: 50%;
+    }
+    .pagination li span {
+        color: #444;
+        display: inline-block;
+        font-size: 1.2rem;
+        padding: 0 10px;
+        line-height: 30px;
+    }
+</style>
+
 <div class="product-list segments-page">
     <div class="container">
         <div class="row">
             <div class="col s4">
-                <select class="browser-default">
-                    <option value="1">深圳</option>
-                    <option value="2">重庆</option>
+                <select class="browser-default" onchange="getregion(this);" id="city">
+                    <option value="0">全部</option>
+                    {volist name='$city' id="vo"}
+                    <option value="{$vo.id}" {if $choose['city'] eq $vo['id']}selected{/if}>{$vo.name}</option>
+                    {/volist}
                 </select>
             </div>
             <div class="col s4">
-                <select class="browser-default">
-                    <option value="1">沙田区</option>
-                    <option value="1">in the last Year</option>
-                    <option value="1">in the last Month</option>
-                    <option value="1">in the last Week</option>
-                    <option value="1">in the last Day</option>
+                <select class="browser-default" id="region">
+                    <option value="0">全部</option>
                 </select>
             </div>
             <div class="col s4">
-                <select class="browser-default">
-                    <option value="1">沙田区</option>
-                    <option value="1">in the last Year</option>
-                    <option value="1">in the last Month</option>
-                    <option value="1">in the last Week</option>
-                    <option value="1">in the last Day</option>
+                <select class="browser-default" id="newer">
+                    <option value="0">全部</option>
+                    {volist name='$newer' id="vo"}
+                    <option value="{$vo.id}" {if $choose['newer'] eq $vo['id']}selected{/if}>{$vo.name}</option>
+                    {/volist}
                 </select>
             </div>
         </div>
@@ -43,7 +54,8 @@
             </div>
             <div class="product-text">
                 <a href="{:url('detail')}?id={$vo.id}"><p>{$vo.title}</p></a>
-                <h5>$28</h5>
+                <h5>￥{$vo.price}</h5>
+                <p>{$vo.newer}</p>
                 <a href="{:url('detail')}?id={$vo.id}"><button class="button">详细信息</button></a>
             </div>
             <div class="clear"></div>
@@ -51,20 +63,48 @@
         {/volist}
         
         
+        
         <div class="pagination">
-            <ul>
-                <li class="disabled"><a href="">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-                <li><a href="">4</a></li>
-                <li><a href="">5</a></li>
-            </ul>
+            {$page}
         </div>
     </div>
 </div>
+<input type="hidden" id="type" value="{$type}" />
 <!-- end product list -->
 <!-- end product details -->
 {include file="common/foot"/}
-
+<script>
+    function getregion(obj) {
+        var pid = $(obj).val();
+        $.ajax({
+            url:'{:url("Index/getregion")}',
+            data:{pid:pid},
+            type:"post",
+            dataType:"json",
+            success:function(data){
+                if (data.code == 1) {
+                    if (data.data) {
+                        var html = "<option value='0'>全部</option>";
+                        for (var i=0;i<data.data.length;i++) {
+                            html += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+                        }
+                        $('#region').html(html);      
+                    }
+                } else {
+                    alert(data.msg);
+                }
+            }, 
+        });
+    }
+    
+    $('#searchlist').click(function(){
+       var city = $("#city").val();
+       var region = $('#region').val();
+       var newer = $('#newer').val();
+       var type = $("#type").val();
+       
+       location.href="{:url('Index/lists')}?city="+city+"&region="+region+"&newer="+newer+"&type="+type;
+    });
+</script>
 </body>
 </html>

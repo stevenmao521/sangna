@@ -5,12 +5,7 @@
 {include file="common/nav"/}
 <!-- end sidebar -->
 <!-- end sidebar -->
-
-
-
 <!-- sidebar cart -->
-
-
 <!-- product details -->
 <div class="segments-page">
     <div class="container">
@@ -19,7 +14,7 @@
                 
                 <div class="desc-short">
                     <h4>{$info.title}</h4>
-                    <h5>$28</h5>
+                    <h5>￥{$info.price}</h5>
                     <p>{$info.mark}</p>
                     <button class="button"><i class="fa fa-shopping-cart"></i>购买信息</button>
                 </div>
@@ -35,46 +30,96 @@
                 {/volist}
             </div>
             <div class="review">
-                <h5>Review</h5>
+                <h5>留言列表</h5>
+                
+                {volist name='$comments' id='vo'}
                 <div class="comment-people">
                     <div class="contents">
                         <div class="icon">
                             <img src="__STATIC__/sangna/images/comment1.png" alt="">
                         </div>
                         <div class="text">
-                            <h6>John Doe</h6>
-                            <p class="date">2020年12月21日 21:32</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <h6>{$vo.nickname}</h6>
+                            <p class="date">{$vo.createtime}</p>
+                            <p>{$vo.contents}</p>
                         </div>
                     </div>
+                    {if $vo.reply}
                     <div class="contents reply">
                         <div class="icon">
                             <img src="__STATIC__/sangna/images/comment2.png" alt="">
                         </div>
                         <div class="text">
-                            <h6>街王<i class="fa fa-bookmark"></i></h6>
-                            <p class="date">2020年12月21日 21:32</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <h6>admin<i class="fa fa-bookmark"></i></h6>
+                            <p class="date">{$vo.replytime}</p>
+                            <p>{$vo.reply}</p>
                         </div>
                     </div>
+                    {/if}
                 </div>
+                {/volist}
+                
             </div>
             <div class="comment-post">
                 <div class="comment-title">
                     <h5>留言</h5>
                 </div>
                 <form>
-                    <input type="text" placeholder="昵称">
-                    <input type="email" placeholder="邮箱">
-                    <textarea class="no-mb" cols="30" rows="10" placeholder="内容"></textarea>
-                    <button class="button">提交</button>
+                    <input type="text" placeholder="昵称" id='nickname'>
+                    <textarea class="no-mb" cols="30" rows="10" placeholder="内容" id='contents'></textarea>
+                    <a style='color:#fff;' href="javascript:;" class="button" id="docomments">提交</a>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<input type='hidden' id='ids' value='{$id}' />
 <!-- end product details -->
 {include file="common/foot"/}
 
+
+<script>
+    $('#docomments').click(function(){
+       var nickname = $('#nickname').val();
+       var contents = $('#contents').val();
+       var id = $("#ids").val();
+       if (nickname) {
+           nickname = deleteHtmlTag(nickname);
+       } else {
+           nickname = "匿名用户";
+       }
+       if (!contents) {
+           alert("请输入留言内容");
+       } else {
+           contents = deleteHtmlTag(contents);
+       }
+       $.ajax({
+            url:'{:url("Comments/done")}',
+            data:{nickname:nickname,contents:contents,id:id},
+            type:"post",
+            dataType:"json",
+            success:function(data){
+                if (data.code == 1) {
+                    alert(data.msg);
+                } else {
+                    alert(data.msg);
+                }
+            }, 
+        });
+    });
+    function deleteHtmlTag(str){ 
+        str = str.replace(/<[^>]+>|&[^>]+;/g,"").trim();//去掉所有的html标签和&nbsp;之类的特殊符合 
+        return str; 
+   }
+    
+    
+</script>
+
+
+
+
 </body>
 </html>
+
+
+
