@@ -16,7 +16,7 @@
                     <h4>{$info.title}</h4>
                     <!--<h5>￥{$info.price}</h5>-->
                     <p>{$info.mark}</p>
-                    {if $info['haspay] !=1 }
+                    {if $info['haspay'] !=1 }
                     <button class="button"><i class="fa fa-shopping-cart"></i><a style="color:#fff;" href="{:url('Buy/pay')}?id={$info.id}">获取隐藏信息</a></button>
                     {/if}
                 </div>
