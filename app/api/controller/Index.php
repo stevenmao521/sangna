@@ -59,6 +59,7 @@ class Index extends Common{
         $order = db("orders")->where("orderid='{$id}' and uid='{$tuserId}' and status=1")->find();
         if ($order && $order['status'] == 1) {
             $info['showhidden'] = $info['hiden'];
+            $info['haspay'] = 1;
         } else {
             $info['showhidden'] = "购买后显示";
         }
