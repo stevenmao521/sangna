@@ -16,7 +16,7 @@ class Notify extends Common{
     public function getdata() {
         ksort($_POST); //排序post参数
         reset($_POST); //内部指针指向数组中的第一个元素
-        $codepay_key="这里改成您的码支付密钥"; //这是您的密钥
+        $codepay_key="sVy5ug1SIR4VkY5YSfNGVRuh96PEvlJS"; //这是您的密钥
         $sign = '';//初始化
         foreach ($_POST AS $key => $val) { //遍历POST参数
             if ($val == '' || $key == 'sign') continue; //跳过这些不签名
