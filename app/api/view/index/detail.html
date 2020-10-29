@@ -14,9 +14,9 @@
                 
                 <div class="desc-short">
                     <h4>{$info.title}</h4>
-                    <h5>￥{$info.price}</h5>
+                    <!--<h5>￥{$info.price}</h5>-->
                     <p>{$info.mark}</p>
-                    <button class="button"><i class="fa fa-shopping-cart"></i><a href="{:url('Buy/pay')}?id={$info.id}">购买信息</a></button>
+                    <button class="button"><i class="fa fa-shopping-cart"></i><a href="{:url('Buy/pay')}?id={$info.id}">查看隐藏信息</a></button>
                 </div>
                 <div class="desc-long">
                     <h5>详细信息</h5>
@@ -31,7 +31,6 @@
             </div>
             <div class="review">
                 <h5>留言列表</h5>
-                
                 {volist name='$comments' id='vo'}
                 <div class="comment-people">
                     <div class="contents">

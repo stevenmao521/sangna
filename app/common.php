@@ -433,6 +433,17 @@ function getCity($ip = ''){
     }
     return $json;
 }
+
+function getCitynew() {
+    $res = @file_get_contents('http://pv.sohu.com/cityjson?ie=utf-8');
+    if(empty($res)){ return false; }
+    preg_match('#\{.+?\}#', $res, $jsonMatches);
+    if(!isset($jsonMatches[0])){ return false; }
+    $json = json_decode($jsonMatches[0], true);
+    return $json;
+}
+
+
 //判断图片的类型从而设置图片路径
 function imgUrl($img,$defaul=''){
     if($img){

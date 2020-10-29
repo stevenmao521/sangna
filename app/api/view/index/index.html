@@ -56,7 +56,7 @@
                     {if $k>2}
                     <div class="col s6">
                         <div class="content">
-                            <div class="image" style="height: 140px;overflow: hidden;">
+                            <div class="image" style="height: 160px;overflow: hidden;">
                                 <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt=""></a>
                             </div>
                             <div class="text">
@@ -78,12 +78,12 @@
     <div class="product-home segments" style="margin-top:-60px;">
         <div class="container">
             <div class="section-title">
-                <h3>媾氹ZJ</h3>
+                <h3>{$title['zj']}</h3>
             </div>
             <div class="product-slide owl-carousel owl-theme">
                 {volist name="$street" id="vo" k="k"}
-                <div class="content">
-                    <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt=""></a>
+                <div class="content" style="height:140px;overflow:hidden;">
+                    <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt="" ></a>
                 </div>
                 {/volist}
             </div>
@@ -95,17 +95,37 @@
         </div>
     </div>
     <!-- end product home -->
-
+    
+    <div class="product-home p-bottom segments">
+        <div class="container">
+            <div class="section-title">
+                <h3>{$title['lf']}</h3>
+            </div>
+            <div class="product-slide-two owl-carousel owl-theme">
+                {volist name="$lf" id="vo" k="k"}
+                <div class="content" style="height:140px;overflow:hidden;">
+                    <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt="" ></a>
+                </div>
+                {/volist}
+            </div>
+            <div class="l-more">
+                <a href="{:url('index/lists')}?type=2">
+                    更多<i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
     <!-- product home -->
     <div class="product-home p-bottom segments">
         <div class="container">
             <div class="section-title">
-                <h3>媾氹HS</h3>
+                <h3>{$title['hs']}</h3>
             </div>
             <div class="product-slide-two owl-carousel owl-theme">
                 {volist name="$hs" id="vo" k="k"}
-                <div class="content">
-                    <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt=""></a>
+                <div class="content" style="height:140px;overflow:hidden;">
+                    <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt="" ></a>
                 </div>
                 {/volist}
             </div>
@@ -117,7 +137,7 @@
         </div>
     </div>
     <!-- end product home -->
-
+    
     <!-- footer -->
     {include file="common/foot"/}
 </body>

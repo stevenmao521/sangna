@@ -1,13 +1,15 @@
 <div class="sidebar-panel">
     <ul id="slide-out" class="collapsible side-nav">
         <li>
+            
             <div class="user-view">
                 <div class="background">
                     <img src="images/blog3.jpg" alt="">
                 </div>
                 <img class="circle responsive-img" src="__STATIC__/sangna/images/profile.png" alt="">
-                <span class="white-text name">媾氹</span>
+                <span class="white-text name">{$sys.name}</span>
             </div>
+            
         </li>
         <li><a href="{:url('index/index')}"><i class="fa fa-home"></i>主页</a></li>
         <!--
@@ -42,8 +44,9 @@
             </div>
             <div class="collapsible-body">
                 <ul>
-                    <li><a href="{:url('index/lists')}?type=1">媾氹ZJ</a></li>
-                    <li><a href="{:url('index/lists')}?type=2">媾氹HS</a></li>
+                    <li><a href="{:url('index/lists')}?type=1">{$title.zj}</a></li>
+                    <li><a href="{:url('index/lists')}?type=3">{$title.lf}</a></li>
+                    <li><a href="{:url('index/lists')}?type=2">{$title.hs}</a></li>
                 </ul>
             </div>
         </li>
