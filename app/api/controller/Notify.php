@@ -24,11 +24,6 @@ class Notify extends Common{
             $sign .= "$key=$val"; //拼接为url参数形式
         }
         
-        db("city")->insert([
-            "createtime"=>time(),
-            "name"=>$_POST['pay_no']?$_POST['pay_no']:"test",
-        ]);
-        
         if (!$_POST['pay_no'] || md5($sign . $codepay_key) != $_POST['sign']) { //不合法的数据
             exit('fail');  //返回失败 继续补单
         } else { //合法的数据
