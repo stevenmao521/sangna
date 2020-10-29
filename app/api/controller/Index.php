@@ -47,13 +47,23 @@ class Index extends Common{
     public function detail() {
         $id = input("id");
         $info = db("streetgirl")->where("id='{$id}'")->find();
+        $ip = getIp();
+        $tuserId = session($ip);
+        
         if ($info['pics']) {
             $pic = explode(";",substr($info['pics'],0,-1));
             $info['pics'] = $pic;
         }
+        
+        #是否显示隐藏
+        $order = db("orders")->where("orderid='{$id}' and uid='{$tuserId}' and status=1")->find();
+        if ($order && $order['status'] == 1) {
+            $info['showhidden'] = $info['hiden'];
+        } else {
+            $info['showhidden'] = "购买后显示";
+        }
         #留言列表
         $comments = db("comments")->where("pid='{$id}' and status=1")->order("id desc")->limit(10)->select();
-        
         if ($comments) {
             foreach ($comments as $k=>$v) {
                 $comments[$k]['createtime'] = date('Y',$v['createtime'])."年".date('m',$v['createtime'])."月".date("d",$v['createtime'])."日"." ".date("H:i",$v['createtime']);

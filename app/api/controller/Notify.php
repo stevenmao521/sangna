@@ -13,11 +13,6 @@ namespace app\api\controller;
 use think\Config;
 
 class Notify extends Common{
-    
-    public function _initialize() {
-        parent::_initialize();
-    }
-    
     public function getdata() {
         ksort($_POST); //排序post参数
         reset($_POST); //内部指针指向数组中的第一个元素
@@ -43,6 +38,18 @@ class Notify extends Common{
             $price = (float)$_POST['price']; //订单的原价
             $param = $_POST['param']; //自定义参数
             $pay_no = $_POST['pay_no']; //流水号
+            
+            #查询订单
+            $order = db("orders")->where("pay_id='{$_POST['pay_id']}'")->find();
+            if (!$order || $order['status'] != 0) {
+                exit('fail');  //返回失败 继续补单
+            }
+            db("orders")->where("id='{$order['id']}'")->update([
+                "ordersn"=>$pay_no,
+                "status"=>1,
+                "paytime"=>time(),
+                "money"=>$money
+            ]);
             exit('success'); //返回成功 不要删除哦
         }
     }

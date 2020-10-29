@@ -31,6 +31,12 @@ class Common extends Controller{
         #进入首页获取IP信息并保存
         $ip = getIp();
         $has_cookie = session($ip);
+        $user = db("tuser")->where("ip='{$ip}'")->find();
+        if ($user) {
+            if ($user['forbid'] == 1) {
+                $this->error("网站维护中");
+            }
+        }
         if (!$has_cookie) {
             #根据ip注册为新用户
             $city = getCitynew();

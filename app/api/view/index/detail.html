@@ -16,7 +16,11 @@
                     <h4>{$info.title}</h4>
                     <!--<h5>￥{$info.price}</h5>-->
                     <p>{$info.mark}</p>
-                    <button class="button"><i class="fa fa-shopping-cart"></i><a href="{:url('Buy/pay')}?id={$info.id}">查看隐藏信息</a></button>
+                    <button class="button"><i class="fa fa-shopping-cart"></i><a style="color:#fff;" href="{:url('Buy/pay')}?id={$info.id}">获取隐藏信息</a></button>
+                </div>
+                <div class="desc-short">
+                    <h4>- 隐藏信息 -</h4>
+                    <p>{$info.showhidden}</p>
                 </div>
                 <div class="desc-long">
                     <h5>详细信息</h5>
@@ -111,12 +115,7 @@
         return str; 
    }
     
-    
 </script>
-
-
-
-
 </body>
 </html>
 

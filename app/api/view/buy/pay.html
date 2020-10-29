@@ -1,6 +1,4 @@
 {include file="common/head"/}
-
-
 <!-- 左导航 -->
 {include file="common/nav"/}
 <!-- end sidebar -->
@@ -9,19 +7,56 @@
 <!-- product details -->
 <div class="segments-page">
     <div class="container">
-        <div class="about">
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="9535JSDKYBGL4">
-            <input type="image" src="https://www.paypalobjects.com/en_US/C2/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-            < img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-            </form>
+        <div class="contact segments-page">
+            <div class="container">
+                <div class="contact-contents">
+                    <div class="pages-title">
+                        <h3>购买信息</h3>
+                    </div>
+                    <form>
+                        <label>信息名<input type="text" placeholder="" disabled="" value="{$info.title}"></label>
+                        <label>价格<input type="text" placeholder="" disabled="" value="{$info.price}"></label>
+                        <label>填写邮箱 (如未填写，信息丢失后果自负)<input type="email" placeholder="务必填写邮箱地址" id="email"></label>
+                        <a style="color:#fff;" class="button" id="pay"><i class="fa fa-send"></i>去支付</a>
+                        <input type="hidden" id="ids" value="{$id}" />
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 <!-- end product details -->
 {include file="common/foot"/}
 <script>
+    $('#pay').click(function(){
+       alert(1);
+       var email = $('#email').val();
+       var id = $("#ids").val();
+       if (email) {
+           email = deleteHtmlTag(email);
+       } else {
+           alert("请填写邮箱，方便查找信息");
+       }
+       
+       $.ajax({
+            url:'{:url("Buy/createorder")}',
+            data:{email:email,id:id},
+            type:"post",
+            dataType:"json",
+            success:function(data){
+                if (data.code == 1) {
+                    location.href = data.data.url;
+                } else {
+                    alert(data.msg);
+                }
+            }, 
+        });
+    });
+    
+    function deleteHtmlTag(str){ 
+        str = str.replace(/<[^>]+>|&[^>]+;/g,"").trim();//去掉所有的html标签和&nbsp;之类的特殊符合 
+        return str; 
+    }
 </script>
 </body>
 </html>
