@@ -38,27 +38,28 @@ class Common extends Controller{
                 exit;
             }
         }
-        #$ip = "186.226.69.114";
-        $city = getCitynew($ip);
-        if ($city) {
-            if ($city["data"][0] == "中国") {
-                if ($user) {
-                    db("tuser")->where("id='{$tuser['id']}'")->update(["forbid"=>1]);
-                } else {
-                    db("tuser")->insertGetId([
-                        "ip"=>$ip,
-                        "lastlogin"=>time(),
-                        "createtime"=>time(),
-                        "cname"=>$city["data"][0].$city["data"][1].$city["data"][2],
-                        "forbid"=>1
-                    ]);
-                }
-                echo 404;
-                exit;
-            }
-        }
         
         if (!$has_cookie) {
+            #$ip = "186.226.69.114";
+            $city = getCitynew($ip);
+            if ($city) {
+                if ($city["data"][0] == "中国") {
+                    if ($user) {
+                        db("tuser")->where("id='{$tuser['id']}'")->update(["forbid"=>1]);
+                    } else {
+                        db("tuser")->insertGetId([
+                            "ip"=>$ip,
+                            "lastlogin"=>time(),
+                            "createtime"=>time(),
+                            "cname"=>$city["data"][0].$city["data"][1].$city["data"][2],
+                            "forbid"=>1
+                        ]);
+                    }
+                    echo 404;
+                    exit;
+                }
+            }
+            
             #根据ip注册为新用户
             if ($city) {
                 $cname = $city["data"][0].$city["data"][1].$city["data"][2];
