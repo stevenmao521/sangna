@@ -60,9 +60,8 @@ class Common extends Controller{
         
         if (!$has_cookie) {
             #根据ip注册为新用户
-            $city = getCitynew();
             if ($city) {
-                $cname = $city['cname'];
+                $cname = $city["data"][0].$city["data"][1].$city["data"][2];
             } else {
                 $cname = "";
             }
