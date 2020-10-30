@@ -83,6 +83,8 @@ class Index extends Common{
             $where .= " and cates=1 ";
         } elseif ($type == 2) {
             $where .= " and cates=2 ";
+        } elseif ($type == 3) {
+            $where .= " and cates=3 ";
         }
         $citys = input("city");
         $regions = input("region");
