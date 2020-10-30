@@ -6,6 +6,15 @@
     {include file="common/nav"/}
     <!-- end sidebar -->
 
+    <!-- end navbar -->
+    <div class="container" style="margin-top:60px;margin-bottom: -50px;">
+        <ul class="citys">
+        {volist name="city" id="vo"}
+            <li ids="{$vo.id}" ids="{$vo.id}" style="color:#00ADEE;">{$vo.name}</li>
+        {/volist}
+        </ul>
+    </div>
+    
     <!-- 滚图 -->
     <div class="container">
         <div class="slide">
