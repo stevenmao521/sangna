@@ -17,7 +17,7 @@ class UpFiles extends Common
         $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
         
         
-        $max = 122880;
+        $max = 1122880;
         $checkmax = $info->checkSize($max);
         if (!$checkmax) {
             return ['code'=>0];
