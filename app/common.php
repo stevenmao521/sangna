@@ -434,13 +434,24 @@ function getCity($ip = ''){
     return $json;
 }
 
-function getCitynew() {
-    $res = @file_get_contents('http://pv.sohu.com/cityjson?ie=utf-8');
+function getCitynew($ip) {
+//    $res = @file_get_contents('http://pv.sohu.com/cityjson?ie=utf-8');
+//    if(empty($res)){ return false; }
+//    preg_match('#\{.+?\}#', $res, $jsonMatches);
+//    if(!isset($jsonMatches[0])){ return false; }
+//    $json = json_decode($jsonMatches[0], true);
+//    return $json;
+    $params = [];
+    $params['token'] = "7b1ed710781f3ffd5c6192782379f3d3";
+    $url = "https://api.ip138.com/ipv4/?ip={$ip}&datatype=jsonp&callback=find";
+    $res = mz_http_send($url, $params, 'POST');
     if(empty($res)){ return false; }
     preg_match('#\{.+?\}#', $res, $jsonMatches);
     if(!isset($jsonMatches[0])){ return false; }
     $json = json_decode($jsonMatches[0], true);
     return $json;
+    
+    
 }
 
 

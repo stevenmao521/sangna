@@ -34,9 +34,30 @@ class Common extends Controller{
         $user = db("tuser")->where("ip='{$ip}'")->find();
         if ($user) {
             if ($user['forbid'] == 1) {
-                $this->error("网站维护中");
+                echo 404;
+                exit;
             }
         }
+        #$ip = "186.226.69.114";
+        $city = getCitynew($ip);
+        if ($city) {
+            if ($city["data"][0] == "中国") {
+                if ($user) {
+                    db("tuser")->where("id='{$tuser['id']}'")->update(["forbid"=>1]);
+                } else {
+                    db("tuser")->insertGetId([
+                        "ip"=>$ip,
+                        "lastlogin"=>time(),
+                        "createtime"=>time(),
+                        "cname"=>$city["data"][0].$city["data"][1].$city["data"][2],
+                        "forbid"=>1
+                    ]);
+                }
+                echo 404;
+                exit;
+            }
+        }
+        
         if (!$has_cookie) {
             #根据ip注册为新用户
             $city = getCitynew();

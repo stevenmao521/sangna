@@ -12,7 +12,7 @@
 namespace app\api\controller;
 use think\Config;
 
-class Notify extends Common{
+class Notify extends Commonextend{
     public function getdata() {
         ksort($_POST); //排序post参数
         reset($_POST); //内部指针指向数组中的第一个元素
