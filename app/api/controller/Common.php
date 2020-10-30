@@ -40,6 +40,7 @@ class Common extends Controller{
         }
         
         if (!$has_cookie) {
+            
             #$ip = "186.226.69.114";
             $city = getCitynew($ip);
             if ($city) {
@@ -81,6 +82,7 @@ class Common extends Controller{
             }
             session($ip,$tuser_id);
         }
+        
         $this->assign('title',$title);
     }
     
