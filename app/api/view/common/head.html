@@ -29,16 +29,48 @@
                 </div>
                 <div class="col s6">
                     <div class="content-right">
-                        <!--
-                        <a href="#slide-out-right" data-activates="slide-out-right" class="sidebar-search"><i class="fa fa-search"></i></a>
                         <a href="#slide-out-cart" data-activates="slide-out-cart" class="sidebar-cart">
-                            <i class="fa fa-shopping-cart"></i>
-                            <sup>3</sup>
+                            {$def_city} >
                         </a>
-                        -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- end navbar -->
+    
+    <!-- sidebar cart -->
+    <div class="sidebar-panel sidebar-cart">
+        <div id="slide-out-cart" class="collapsible side-nav">
+            <div class="content city" style='margin-bottom:20px;'>
+                <ul>
+                    {volist name="city" id="vo"}
+                    <li ids="{$vo.id}">{$vo.name}</li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="cart-button" style='clear:both;'>
+                <ul>
+                    <li>
+                        <button class="button"><i class="fa fa-shopping-cart"></i>切换城市</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end sidebar cart -->
+    
+    <style>
+        .city{
+            float:left;
+        }
+        .city ul li{
+            width:80px;height:34px;line-heigh:34px;
+            float:left;
+            text-align: center;
+            color:#00ADEE;
+        }
+    </style>
+    
+    
+    

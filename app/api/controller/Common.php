@@ -83,6 +83,17 @@ class Common extends Controller{
             session($ip,$tuser_id);
         }
         
+        $cites = db("city")->where("istrash=0")->select();
+        if (session("city")) {
+            $cite = session("city");
+            $def_city = db("city")->where("id='{$cite}'")->value("name");
+        } else {
+            $def_city = "深圳市";
+            session("city", 1);
+        }
+        
+        $this->assign("city",$cites);
+        $this->assign("def_city",$def_city);
         $this->assign('title',$title);
     }
     

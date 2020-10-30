@@ -25,3 +25,23 @@
 <script src="__STATIC__/sangna/js/materialize.js"></script>
 <script src="__STATIC__/sangna/js/owl.carousel.min.js"></script>
 <script src="__STATIC__/sangna/js/main.js"></script>
+
+<script>
+   $(".city ul li").click(function(){
+        var city = $(this).attr("ids");
+        $.ajax({
+            url:'{:url("City/init")}',
+            data:{city:city},
+            type:"post",
+            dataType:"json",
+            success:function(data){
+                if (data.code == 1) {
+                    location.reload();
+                } else {
+                    alert(data.msg);
+                }
+            },
+        });
+    });
+</script>
+ 
