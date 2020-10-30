@@ -115,6 +115,7 @@ class Index extends Common{
         
         foreach ($lists['data'] as $k=>$v) {
             $lists['data'][$k]['newer'] = db("newer")->where("id='{$v['newer']}'")->value("name");
+            $lists['data'][$k]['mark'] = mb_substr($v['mark'],0,30)."...";
         }
         return $this->fetch('',[
             "lists"=>$lists['data'],
