@@ -14,7 +14,11 @@
                 {volist name="$slide" id="vo"}
                 <div class="slide-content first-slide">
                     <div class="mask2"></div>
+                    {if $vo.pic}
                     <img src="__PUBLIC__/{$vo.pic}" alt="">
+                    {else}
+                    <img src="__STATIC__/sangna/images/default.jpg" alt="">
+                    {/if}
                     <div class="caption">
                         <h2>{$vo.title}</h2>
                         <p>{$vo.mark}</p>
@@ -38,7 +42,13 @@
                 <div class="col s6">
                     <div class="content">
                         <div class="image" style="height: 160px;overflow: hidden;">
+                            
+                            {if $vo.pic}
                             <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt=""></a>
+                            {else}
+                            <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
+                            {/if}
+                            
                         </div>
                         <div class="text">
                             <a href="{:url('detail')}?id={$vo.id}">
@@ -57,7 +67,11 @@
                     <div class="col s6">
                         <div class="content">
                             <div class="image" style="height: 160px;overflow: hidden;">
+                                {if $vo.pic}
                                 <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt=""></a>
+                                {else}
+                                <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
+                                {/if}
                             </div>
                             <div class="text">
                                 <a href="{:url('detail')}?id={$vo.id}">
@@ -83,7 +97,11 @@
             <div class="product-slide owl-carousel owl-theme">
                 {volist name="$street" id="vo" k="k"}
                 <div class="content" style="height:140px;overflow:hidden;">
+                    {if $vo.pic}
                     <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt="" ></a>
+                    {else}
+                    <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
+                    {/if}
                 </div>
                 {/volist}
             </div>
@@ -104,7 +122,11 @@
             <div class="product-slide-two owl-carousel owl-theme">
                 {volist name="$lf" id="vo" k="k"}
                 <div class="content" style="height:140px;overflow:hidden;">
+                    {if $vo.pic}
                     <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt="" ></a>
+                    {else}
+                    <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
+                    {/if}
                 </div>
                 {/volist}
             </div>
@@ -125,7 +147,11 @@
             <div class="product-slide-two owl-carousel owl-theme">
                 {volist name="$hs" id="vo" k="k"}
                 <div class="content" style="height:140px;overflow:hidden;">
+                    {if $vo.pic}
                     <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt="" ></a>
+                    {else}
+                    <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
+                    {/if}
                 </div>
                 {/volist}
             </div>
