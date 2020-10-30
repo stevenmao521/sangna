@@ -98,4 +98,24 @@ class Buy extends Common{
             return mz_apierror("订单创建失败");
         }
     }
+    
+    public function search() {
+        if (request()->isPost()) {
+            $email = input("email");
+            $order = db("orders")->where("email='{$email}' and status=1")->select();
+            if ($order) {
+                $html = "<div>";
+                foreach ($order as $k=>$v) {
+                    $info = db("streetgirl")->where("id='{$v['orderid']}'")->find();
+                    $html .= "<p style='color:red;'>{$info['title']}</p>";
+                    $html .= "<p>{$info['hiden']}</p>";
+                }
+                $html .= "</div>";
+                return mz_apisuc("成功",array('data'=>$html));
+            } else {
+                return mz_apierror("订单未找到");
+            }
+        }
+        return $this->fetch("",[]);
+    }
 }

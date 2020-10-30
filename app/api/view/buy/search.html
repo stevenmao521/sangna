@@ -1,0 +1,62 @@
+{include file="common/head"/}
+<!-- 左导航 -->
+{include file="common/nav"/}
+<!-- end sidebar -->
+<!-- end sidebar -->
+<!-- sidebar cart -->
+<!-- product details -->
+<div class="segments-page">
+    <div class="container">
+        <div class="contact segments-page">
+            <div class="container">
+                <div class="contact-contents">
+                    <div class="pages-title">
+                        <h3>查看订单</h3>
+                    </div>
+                    <form>
+                        <label>填写邮箱<input type="email" placeholder="填写购买邮箱" id="email"></label>
+                        <a style="color:#fff;" class="button" id="pay"><i class="fa fa-send"></i>查看</a>
+                    </form>
+                </div>
+                <div  class="contact-contents" id='hid'></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end product details -->
+{include file="common/foot"/}
+<script>
+    $('#pay').click(function(){
+       var email = $('#email').val();
+       if (email) {
+           email = deleteHtmlTag(email);
+       } else {
+           alert("请填写邮箱");
+       }
+       
+       $.ajax({
+            url:'{:url("Buy/search")}',
+            data:{email:email},
+            type:"post",
+            dataType:"json",
+            success:function(data){
+                if (data.code == 1) {
+                    $("#hid").html("");
+                    $("#hid").html(data.data.data);
+                } else {
+                    alert(data.msg);
+                }
+            }, 
+        });
+    });
+    
+    function deleteHtmlTag(str){ 
+        str = str.replace(/<[^>]+>|&[^>]+;/g,"").trim();//去掉所有的html标签和&nbsp;之类的特殊符合 
+        return str; 
+    }
+</script>
+</body>
+</html>
+
+
+
