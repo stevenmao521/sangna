@@ -55,6 +55,8 @@ class Index extends Common{
             $info['pics'] = $pic;
         }
         
+        db("streetgirl")->where("id='{$id}'")->setInc("hot");
+        
         #是否显示隐藏
         $order = db("orders")->where("orderid='{$id}' and uid='{$tuserId}' and status=1")->find();
         if ($order && $order['status'] == 1) {
