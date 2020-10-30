@@ -922,6 +922,7 @@ a.link-color:hover {
 .product-list .content .product-image {
     float: left;
     margin-right: 20px;
+    height:80px;
 }
 
 .product-list .content .product-image img {
@@ -932,6 +933,7 @@ a.link-color:hover {
 
 .product-list .content .product-text a p {
     margin-top: 0;
+    font-size:16px;
 }
 
 .product-list .content .product-text h5 {
@@ -939,7 +941,7 @@ a.link-color:hover {
 }
 
 .product-list .content .product-text .button {
-    margin-top: 14px;
+    /*margin-top: 14px;*/
 }
 
 .product-list .content .clear {
