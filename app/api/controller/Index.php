@@ -106,8 +106,10 @@ class Index extends Common{
             $choose['city'] = $citys;
         } else {
             $cite = session("city");
-            $where .= " and city='{$cite}' ";
-            $choose['city'] = $cite;
+            if ($cite > 0) {
+                $where .= " and city='{$cite}' ";
+                $choose['city'] = $cite;
+            }
         }
         if ($regions) {
             $where .= " and region='{$regions}' ";
