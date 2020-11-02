@@ -21,16 +21,22 @@ class Index extends Common{
     public function index() {
         $city = session("city");
         
+        if ($city > 0) {
+            $whereother = " and city = '{$city}' ";
+        } else {
+            $whereother = "";
+        }
+        
         #幻灯
-        $slide = db("streetgirl")->where("istrash=0 and isslide=1 and city='{$city}'")->limit(4)->select();
+        $slide = db("streetgirl")->where("istrash=0 and isslide=1 {$whereother}")->limit(4)->select();
         #热门
-        $hot = db("streetgirl")->where("istrash=0 and ishot=1 and city='{$city}'")->limit(4)->select();
+        $hot = db("streetgirl")->where("istrash=0 and ishot=1  {$whereother}")->limit(4)->select();
         #zj
-        $street = db("streetgirl")->where("istrash=0 and cates=1 and ishome=1 and city='{$city}'")->limit(4)->select();
+        $street = db("streetgirl")->where("istrash=0 and cates=1 and ishome=1  {$whereother}")->limit(4)->select();
         #hs
-        $hs = db("streetgirl")->where("istrash=0 and cates=2 and ishome=1 and city='{$city}'")->limit(4)->select();
+        $hs = db("streetgirl")->where("istrash=0 and cates=2 and ishome=1  {$whereother}")->limit(4)->select();
         #hs
-        $lf = db("streetgirl")->where("istrash=0 and cates=3 and ishome=1 and city='{$city}'")->limit(4)->select();
+        $lf = db("streetgirl")->where("istrash=0 and cates=3 and ishome=1  {$whereother}")->limit(4)->select();
         
         $title = [];
         $title['zj'] = db("cates")->where("id=1")->value("name");

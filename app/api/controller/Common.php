@@ -88,8 +88,8 @@ class Common extends Controller{
             $cite = session("city");
             $def_city = db("city")->where("id='{$cite}'")->value("name");
         } else {
-            $def_city = "深圳市";
-            session("city", 1);
+            $def_city = "全部";
+            session("city", 0);
         }
         
         $this->assign("city",$cites);
