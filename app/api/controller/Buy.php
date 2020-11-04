@@ -96,7 +96,7 @@ class Buy extends Common{
                 "notify_url"=>"http://www.g-dang.com/api/Notify/getdata",//通知地址
                 "return_url"=>"http://www.g-dang.com/api/Index/detail?id={$id}",//跳转地址
                 "qrcode_url"=>$qrimg,
-                "pay_type"=>1
+                #"pay_type"=>1
             ); //构造需要传递的参数
 
             ksort($data); //重新排序$data数组
