@@ -9,10 +9,10 @@
     <!-- end navbar -->
     <div class="container" style="margin-top:60px;margin-bottom: -40px;">
         <ul class="citys">
-            <li ids="0"  style="color:#00ADEE;font-size:16px;">全部</li>
-        {volist name="city" id="vo"}
-            <li ids="{$vo.id}" ids="{$vo.id}" style="color:#00ADEE;font-size:16px;">{$vo.name}</li>
-        {/volist}
+            <li ids="0"  {if $def_city == '全部'}style="color:#e82954;font-size:16px;"{else/}style="color:#00ADEE;font-size:16px;"{/if}}>全部</li>
+            {volist name="city" id="vo"}
+            <li ids="{$vo.id}" ids="{$vo.id}"  {if $def_city == $vo.name}style="color:#e82954;font-size:16px;"{else/}style="color:#00ADEE;font-size:16px;" {/if}>{$vo.name}</li>
+            {/volist}
         </ul>
     </div>
     
@@ -51,7 +51,7 @@
                 {if $k<=2}
                 <div class="col s6">
                     <div class="content">
-                        <div class="image" style="height: 160px;overflow: hidden;">
+                        <div class="image" style="height: 120px;overflow: hidden;">
                             
                             {if $vo.pic}
                             <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt=""></a>
@@ -76,7 +76,7 @@
                     {if $k>2}
                     <div class="col s6">
                         <div class="content">
-                            <div class="image" style="height: 160px;overflow: hidden;">
+                            <div class="image" style="height: 120px;overflow: hidden;">
                                 {if $vo.pic}
                                 <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt=""></a>
                                 {else}
@@ -102,11 +102,11 @@
     <div class="product-home segments" style="margin-top:-60px;">
         <div class="container">
             <div class="section-title">
-                <h3>{$title['zj']}</h3>
+                <h3><a style='color:#e82954;' href="{:url('index/lists')}?type=1">{$title['zj']}</a></h3>
             </div>
             <div class="product-slide owl-carousel owl-theme">
                 {volist name="$street" id="vo" k="k"}
-                <div class="content" style="height:160px;overflow:hidden;">
+                <div class="content" style="height:150px;overflow:hidden;">
                     <div class="content" style="height:120px;overflow:hidden;">
                     {if $vo.pic}
                     <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt="" ></a>
@@ -119,11 +119,7 @@
                 
                 {/volist}
             </div>
-            <div class="l-more">
-                <a href="{:url('index/lists')}?type=1">
-                    更多<i class="fa fa-angle-right"></i>
-                </a>
-            </div>
+            
         </div>
     </div>
     <!-- end product home -->
@@ -131,11 +127,11 @@
     <div class="product-home p-bottom segments">
         <div class="container">
             <div class="section-title">
-                <h3>{$title['lf']}</h3>
+                <h3><a style='color:#e82954;' href="{:url('index/lists')}?type=3">{$title['lf']}</a></h3>
             </div>
             <div class="product-slide owl-carousel owl-theme">
                 {volist name="$lf" id="vo" k="k"}
-                <div class="content" style="height:160px;overflow:hidden;">
+                <div class="content" style="height:150px;overflow:hidden;">
                     <div class="content" style="height:120px;overflow:hidden;">
                     {if $vo.pic}
                     <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt="" ></a>
@@ -148,11 +144,7 @@
                 
                 {/volist}
             </div>
-            <div class="l-more">
-                <a href="{:url('index/lists')}?type=3">
-                    更多<i class="fa fa-angle-right"></i>
-                </a>
-            </div>
+            
         </div>
     </div>
     
@@ -160,11 +152,11 @@
     <div class="product-home p-bottom segments">
         <div class="container">
             <div class="section-title">
-                <h3>{$title['hs']}</h3>
+                <h3><a style='color:#e82954;' href="{:url('index/lists')}?type=2">{$title['hs']}</a></h3>
             </div>
             <div class="product-slide owl-carousel owl-theme">
                 {volist name="$hs" id="vo" k="k"}
-                <div class="content" style="height:160px;overflow:hidden;">
+                <div class="content" style="height:150px;overflow:hidden;">
                     <div class="content" style="height:120px;overflow:hidden;">
                     {if $vo.pic}
                     <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt="" ></a>
@@ -177,12 +169,7 @@
                 
                 {/volist}
             </div>
-            <div class="l-more">
-                <a href="{:url('index/lists')}?type=2">
-                    更多<i class="fa fa-angle-right"></i>
-                </a>
-            </div>
-        </div>
+            
     </div>
     <!-- end product home -->
     
