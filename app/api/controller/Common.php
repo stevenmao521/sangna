@@ -43,6 +43,7 @@ class Common extends Controller{
             
             #$ip = "186.226.69.114";
             $city = getCitynew($ip);
+            /*
             if ($city) {
                 if ($city["data"][0] == "中国") {
                     if ($user) {
@@ -60,6 +61,7 @@ class Common extends Controller{
                     exit;
                 }
             }
+            */
             
             #根据ip注册为新用户
             if ($city) {
