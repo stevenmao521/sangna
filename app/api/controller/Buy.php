@@ -65,6 +65,28 @@ class Buy extends Common{
             $codepay_id="592411";//这里改成码支付ID
             $codepay_key="sVy5ug1SIR4VkY5YSfNGVRuh96PEvlJS"; //这是您的通讯密钥
 
+            $qrimg = "";
+            switch($info['price']) {
+                case 4.9:
+                    $qrimg = "http://www.g-dang.com/public/static/sangna/images/49.jpg";
+                    break;
+                case 9.9:
+                    $qrimg = "http://www.g-dang.com/public/static/sangna/images/99.jpg";
+                    break;
+                case 14.9:
+                    $qrimg = "http://www.g-dang.com/public/static/sangna/images/149.jpg";
+                    break;
+                case 19.9:
+                    $qrimg = "http://www.g-dang.com/public/static/sangna/images/199.jpg";
+                    break;
+                case 29.9:
+                    $qrimg = "http://www.g-dang.com/public/static/sangna/images/299.jpg";
+                    break;
+                case 39.9:
+                    $qrimg = "http://www.g-dang.com/public/static/sangna/images/399.jpg";
+                    break;
+            }
+            
             $data = array(
                 "id" => $codepay_id,//你的码支付ID
                 "pay_id" => $order_sn, //唯一标识 可以是用户ID,用户名,session_id(),订单ID,ip 付款后返回
@@ -73,6 +95,7 @@ class Buy extends Common{
                 "param" => "",//自定义参数
                 "notify_url"=>"http://www.g-dang.com/api/Notify/getdata",//通知地址
                 "return_url"=>"http://www.g-dang.com/api/Index/detail?id={$id}",//跳转地址
+                "qrcode_url"=>$qrimg
             ); //构造需要传递的参数
 
             ksort($data); //重新排序$data数组
