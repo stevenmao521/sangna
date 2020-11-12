@@ -8,6 +8,11 @@ class Login extends Controller
         if (session('aid')) {
             $this->redirect('index/index');
         }
+        $ip = getIp();
+        if ($ip != '104.160.43.105') {
+            echo "404";
+            exit;
+        }
     }
     private $cache_model,$system;
     public function index(){

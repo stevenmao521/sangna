@@ -8,6 +8,11 @@ class Common extends Controller
     protected $mod,$role,$system,$nav,$menudata,$cache_model,$categorys,$module,$moduleid,$adminRules,$HrefId;
     public function _initialize()
     {
+        $ip = getIp();
+        if ($ip != '104.160.43.105') {
+            echo "404";
+            exit;
+        }
 
         //判断管理员是否登录
         if (!session('aid')) {
