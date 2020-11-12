@@ -27,11 +27,13 @@ class Index extends Common{
             $whereother = "";
         }
         
+        #过去一周
+        $day_last = strtotime("-7 days",time());
         #幻灯
-        $slide = db("streetgirl")->where("istrash=0 and isslide=1 {$whereother}")->limit(4)->select();
+        $slide = db("streetgirl")->where("istrash=0 {$whereother}")->order("id desc")->limit(4)->select();
         #热门
         #$hot = db("streetgirl")->where("istrash=0 and ishot=1  {$whereother}")->limit(4)->select();
-        $hot = db("streetgirl")->where("istrash=0 {$whereother}")->order("hot desc")->limit(4)->select();
+        $hot = db("streetgirl")->where("istrash=0 {$whereother} and createtime>='{$day_last}'")->order("hot desc")->limit(4)->select();
         #zj
         #$street = db("streetgirl")->where("istrash=0 and cates=1 and ishome=1  {$whereother}")->limit(4)->select();
         $street = db("streetgirl")->where("istrash=0 and cates=1 {$whereother}")->order("id desc")->limit(4)->select();
