@@ -9,7 +9,7 @@ class Login extends Controller
             $this->redirect('index/index');
         }
         $ip = getIp();
-        if ($ip != '104.160.43.105') {
+        if (!in_array($ip, [ '104.160.43.105','144.34.189.154','199.193.127.187','185.212.57.165','104.193.8.196'])) {
             echo "404";
             exit;
         }
