@@ -22,11 +22,11 @@ class Spider extends Common{
         \think\Loader::import('Simpledom.simple_html_dom');
         $html = file_get_html("http://www.315lz.com/date/2020/12");
         $h4Elements = $html->find('<div class="bunnypresslite_rpimg_in">');
-        print_r($h4Elements);
+        foreach ($h4Elements as $k=>$v) {
+            echo $v->innertext;
+        }
+        
         exit;
-        
-        
-        
         
         return $this->fetch("",[]);
     }
