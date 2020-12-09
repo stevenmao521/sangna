@@ -24,8 +24,9 @@ class Spider extends Common{
         $h4Elements = $html->find('.bunnypresslite_rpimg_in');
         foreach ($h4Elements as $k=>$v) {
             
-            
-                echo htmlspecialchars($v->innertext);
+            $img = $v->find("img");
+            echo $img[1]->src;
+               
                 echo "====";
             
         }
