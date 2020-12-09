@@ -48,6 +48,16 @@ class Spider extends Common{
         foreach ($date as $k=>$v) {
             echo $v->innertext;
         }
+        
+        #获取详情
+        $html_2 = "http://www.315lz.com/7724.html";
+        $html_detail = file_get_html($html_2);
+        
+        $detail = $html->find('.articleBody');
+        foreach ($detail as $k=>$v) {
+            echo $v->innertext;
+        }
+        
         exit;
         
         return $this->fetch("",[]);
