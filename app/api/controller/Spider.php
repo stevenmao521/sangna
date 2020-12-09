@@ -23,16 +23,12 @@ class Spider extends Common{
         $html = file_get_html("http://www.315lz.com/date/2020/12");
         $h4Elements = $html->find('.bunnypresslite_rpimg_in');
         foreach ($h4Elements as $k=>$v) {
-            
             $img = $v->find("img");
             foreach ($img as $k1=>$v1) {
-                echo $v1->innertext;
+                
                 echo $v1->src;
             }
-            echo $img[1]->src;
-               
-                echo "====";
-            
+            echo "====";
         }
         
         exit;
