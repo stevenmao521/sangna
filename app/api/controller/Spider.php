@@ -53,7 +53,7 @@ class Spider extends Common{
         $html_2 = "http://www.315lz.com/7724.html";
         $html_detail = file_get_html($html_2);
         
-        $detail = $html_detail->find('.articleBody');
+        $detail = $html_detail->find('.post-content');
         foreach ($detail as $k=>$v) {
             echo $v->innertext;
         }
