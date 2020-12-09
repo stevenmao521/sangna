@@ -25,10 +25,19 @@ class Spider extends Common{
         foreach ($h4Elements as $k=>$v) {
             $img = $v->find("img");
             foreach ($img as $k1=>$v1) {
-                
+                #图片抓取
                 echo $v1->src;
             }
-            echo "====";
+        }
+        
+        #标题抓取
+        $title = $html->find('.listpage_item_title');
+        foreach ($title as $k=>$v) {
+            
+            $h2 = $v->find("<h2>");
+            foreach ($h2 as $k1=>$v1) {
+                echo $v1->innertext;
+            }
         }
         
         exit;
