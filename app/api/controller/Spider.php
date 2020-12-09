@@ -28,6 +28,7 @@ class Spider extends Common{
             
             if (strpos($v->innertext,'<img width="391" height="400"') !== false) {
                 echo $v->innertext;
+                echo "============";
             }
             
         }
