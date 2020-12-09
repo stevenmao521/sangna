@@ -54,18 +54,17 @@ class Spider extends Common{
         $html_detail = file_get_html($html_2);
         
         $detail = $html_detail->find('.post-content');
+        
+        $content = "";
         foreach ($detail as $k=>$v) {
-            
             $p = $v->find("<p>");
-            $content = "";
             foreach ($p as $k1=>$v1) {
                 if (strpos($v1->innertext,"联系方式") == false) {
                     $content .= $v1->innertext;
                 }
             }
-            echo $content;
         }
-        
+        echo $content;
         exit;
         
         return $this->fetch("",[]);
