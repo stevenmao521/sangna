@@ -20,7 +20,7 @@ class Spider extends Common{
     
     public function index() {
         \think\Loader::import('Simpledom.simple_html_dom');
-        $html = file_get_html("http://www.315lz.com/date/2020/12");
+        $html = file_get_html("http://www.315lz.com");
         
         $ins_data = [];
         
