@@ -25,6 +25,10 @@ class Spider extends Common{
         foreach ($h4Elements as $k=>$v) {
             
             $img = $v->find("img");
+            foreach ($img as $k1=>$v1) {
+                echo $v1->innertext;
+                echo $v1->src;
+            }
             echo $img[1]->src;
                
                 echo "====";
