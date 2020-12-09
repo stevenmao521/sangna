@@ -50,7 +50,7 @@ class Spider extends Common{
         }
         
         #获取详情
-        $html_2 = "http://www.315lz.com/7724.html";
+        $html_2 = "http://www.315lz.com/7714.html";
         $html_detail = file_get_html($html_2);
         
         $detail = $html_detail->find('.post-content');
