@@ -21,6 +21,9 @@ class Spider extends Common{
     public function index() {
         \think\Loader::import('Simpledom.simple_html_dom');
         $html = file_get_html("http://www.315lz.com/date/2020/12");
+        
+        $ins_data = [];
+        
         $h4Elements = $html->find('.bunnypresslite_rpimg_in');
         foreach ($h4Elements as $k=>$v) {
             $img = $v->find("img");
@@ -40,6 +43,11 @@ class Spider extends Common{
             }
         }
         
+        #日期
+        $date = $html->find('.post-date');
+        foreach ($date as $k=>$v) {
+            echo $v->innertext;
+        }
         exit;
         
         return $this->fetch("",[]);
