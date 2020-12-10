@@ -19,7 +19,7 @@ class Spider extends Common{
     }
     
     public function index() {
-        
+        set_time_limit(0);
 //        #保存远程图片
 //        $img_url = "https://www.biedoul.com/Uploads/Images/35/580f4b2b8ebb4.jpg";
 //        $save_dir = './public/uploads/down/';
