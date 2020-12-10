@@ -63,13 +63,13 @@ class Spider extends Common{
         $detail = $html->find(".loopbox");
         $contents_data = [];
         $pics_data = [];
-        
+        $hrefs = [];
         foreach ($detail as $k => $v) {
 
             $a = $v->find("a");
             foreach ($a as $k1 => $v1) {
                 $href = $v1->href;
-
+                $hrefs[] = $href;
                 #获取详情
                 $html_2 = $href;
                 $html_detail = file_get_html($html_2);
@@ -120,6 +120,8 @@ class Spider extends Common{
             $tmp['createtime'] = time();
             $tmp['day'] = $dates[$k];
             $tmp['city'] = 1;
+            $tmp['href'] = $hrefs[$k];
+            
             $ins_data[] = $tmp;
             db("streetgirl")->insert($ins_data);
         }
