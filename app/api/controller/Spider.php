@@ -126,4 +126,36 @@ class Spider extends Common{
         exit;
     }
     
+    #系统补起多图
+    public function getpics() {
+        $href = db("streetgirl")->where("istrash=0 and href is not null")->order("id desc")->find();
+        if ($href) {
+            $url = $href['href'];
+            $html_detail = file_get_html($url);
+            $details = $html_detail->find('.post-content');
+            foreach ($details as $k2 => $v2) {
+                #图片
+                $pics = "";
+                $figure = $v2->find("<figure>");
+                foreach ($figure as $k3 => $v3) {
+                    
+                    $img = $v3->find("<img>");
+                    foreach ($img as $k4 => $v4) {
+                        #图片抓取 取 6张
+                        $img_url = $v4->src;
+                        $save_dir = './public/uploads/down/';
+                        $res = mz_getImage($img_url, $save_dir);
+                        $img_return = "/uploads/down/" . $res['file_name'];
+                        $pics .= $img_return . ";";
+                    }
+                   
+                }
+            }
+            db("streetgirl")->where("id='{$href['id']}'")->update([
+                "pics"=>$pics
+            ]);
+            echo "success";
+        }
+    }
+    
 }
