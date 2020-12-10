@@ -130,6 +130,7 @@ class Spider extends Common{
     public function getpics() {
         \think\Loader::import('Simpledom.simple_html_dom');
         $href = db("streetgirl")->where("istrash=0 and href is not null and pics is not null")->order("id desc")->find();
+        print_r($href);exit;
         if ($href) {
             $url = $href['href'];
             $html_detail = file_get_html($url);
