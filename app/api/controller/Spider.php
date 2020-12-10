@@ -20,9 +20,9 @@ class Spider extends Common{
     
     public function index() {
         set_time_limit(0);
-
+        $url = input("url");
         \think\Loader::import('Simpledom.simple_html_dom');
-        $html = file_get_html("http://www.315lz.com");
+        $html = file_get_html($url);
         
         $picsdata = [];
         $h4Elements = $html->find('.bunnypresslite_rpimg_in');
