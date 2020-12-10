@@ -109,7 +109,6 @@ class Spider extends Common{
             }
         }
 
-        
         $ins_data = [];
         foreach ($picsdata as $k=>$v) {
             $tmp = [];
@@ -122,15 +121,10 @@ class Spider extends Common{
             $tmp['day'] = $dates[$k];
             $tmp['city'] = 1;
             $ins_data[] = $tmp;
-            print_r($ins_data);exit;
-            
             db("streetgirl")->insert($ins_data);
-            echo db("streetgirl")->getLastSql();
-            exit;
         }
         echo "success";
         exit;
     }
-    
     
 }
