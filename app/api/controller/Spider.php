@@ -39,6 +39,8 @@ class Spider extends Common{
             }
         }
         
+        print_r($picsdata);exit;
+        
         #标题抓取
         $titles = [];
         $title = $html->find('.listpage_item_title');
