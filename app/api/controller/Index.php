@@ -129,7 +129,7 @@ class Index extends Common{
         #城市
         $page = input('page') ? input('page') : 1;
         $city = db("city")->where("istrash=0")->select();
-        $lists = db("streetgirl")->where($where)->paginate(10, false,['query'=>request()->param()]);
+        $lists = db("streetgirl")->where($where)->order("id desc")->paginate(10, false,['query'=>request()->param()]);
         $page = $lists->render();
         $lists = $lists->toArray();
         
