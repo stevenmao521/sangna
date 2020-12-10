@@ -108,8 +108,8 @@ class Spider extends Common{
         foreach ($picsdata as $k=>$v) {
             $tmp = [];
             $tmp['title'] = $titles[$k];
-            $tmp['details'] = mb_substr($contents_data[$k],0,20)."...";
-            $tmp['hidden'] = $contents_data[$k];
+            $tmp['details'] = mb_substr($contents_data[$k],0,15)."...";
+            $tmp['hiden'] = $contents_data[$k];
             $tmp['pic'] = $v;
             $tmp['pics'] = $pics_data[$k];
             $tmp['mark'] = $links[$k];
