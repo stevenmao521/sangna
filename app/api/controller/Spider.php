@@ -79,11 +79,13 @@ class Spider extends Common{
                     $contents = "";
                     $content = $v2->find("<p>");
                     foreach ($content as $k3 => $v3) {
-                        if ($k3 != 0) {
-                            $contents .= $v3;
+                        
+                        if ($k3 == 0) {
+                            $links[] = $v3->innertext;
                         } else {
-                            $links[] = $v3;
+                            $contents .= $v3;
                         }
+                        
                     }
                     #图片
                     $pics = "";
@@ -107,15 +109,7 @@ class Spider extends Common{
             }
         }
 
-        print_r($titles);
-        print_r($contents_data);
-        print_r($pics_data);
-        print_r($links);
-        print_r($dates);
-        exit;
         
-        
-
         $ins_data = [];
         foreach ($picsdata as $k=>$v) {
             $tmp = [];
