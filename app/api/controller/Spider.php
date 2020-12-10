@@ -68,24 +68,24 @@ class Spider extends Common{
         
         $detail = $html->find(".loopbox");
         foreach ($detail as $k=>$v) {
-            echo $k;
-            
-            $a = $v->find("a");
-            foreach ($a as $k1=>$v1) {
-                $href = $v1->href;
-                echo $k1;
-                if ($k1 == 0) {
+            if ($k == 1) {
+                $a = $v->find("a");
+                foreach ($a as $k1=>$v1) {
+                    $href = $v1->href;
+                    
                     #echo 111;
                     #获取详情
-//                    $html_2 = $href;
-//                    $html_detail = file_get_html($html_2);
-//                    $details = $html_detail->find('.post-content');
-//                    foreach ($details as $k2=>$v2) {
-//                        echo $v2->innertext;
-//                    }
+                    $html_2 = $href;
+                    $html_detail = file_get_html($html_2);
+                    $details = $html_detail->find('.post-content');
+                    foreach ($details as $k2=>$v2) {
+                        echo $v2->innertext;
+                    }
+
                     
                 }
             }
+            
         }
         
         exit;
