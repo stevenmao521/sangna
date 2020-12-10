@@ -71,9 +71,9 @@ class Spider extends Common{
             $a = $v->find("a");
             foreach ($a as $k1=>$v1) {
                 $href = $v1->href;
-                
+                echo $k1;
                 if ($k1 == 0) {
-                    echo 111;
+                    #echo 111;
                     #获取详情
 //                    $html_2 = $href;
 //                    $html_detail = file_get_html($html_2);
