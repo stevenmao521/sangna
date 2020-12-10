@@ -78,7 +78,7 @@ class Spider extends Common{
                     $html_detail = file_get_html($html_2);
                     $details = $html_detail->find('.post-content');
                     foreach ($details as $k2=>$v2) {
-                        echo $v->innertext;
+                        echo $v2->innertext;
                     }
                     
                 }
