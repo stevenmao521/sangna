@@ -152,10 +152,17 @@ class Spider extends Common{
                    
                 }
             }
-            db("streetgirl")->where("id='{$href['id']}'")->update([
-                "pics"=>$pics
-            ]);
-            echo "success";
+            if ($pics) {
+                db("streetgirl")->where("id='{$href['id']}'")->update([
+                    "pics"=>$pics
+                ]);
+            } else {
+                db("streetgirl")->where("id='{$href['id']}'")->update([
+                    "pics"=>'nopic'
+                ]);
+            }
+            
+            echo "success".$href['id'];
         }
     }
     
