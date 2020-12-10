@@ -39,7 +39,6 @@ class Spider extends Common{
             }
         }
         
-        print_r($picsdata);exit;
         
         #标题抓取
         $titles = [];
@@ -64,7 +63,6 @@ class Spider extends Common{
         $detail = $html->find(".loopbox");
         $contents_data = [];
         $pics_data = [];
-        
         
         foreach ($detail as $k => $v) {
 
@@ -122,6 +120,8 @@ class Spider extends Common{
             $tmp['day'] = $dates[$k];
             $tmp['city'] = 1;
             $ins_data[] = $tmp;
+            print_r($ins_data);exit;
+            
             db("streetgirl")->insert($ins_data);
             echo db("streetgirl")->getLastSql();
             exit;
