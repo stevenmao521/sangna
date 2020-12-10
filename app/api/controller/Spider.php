@@ -24,20 +24,20 @@ class Spider extends Common{
         \think\Loader::import('Simpledom.simple_html_dom');
         $html = file_get_html("http://www.315lz.com");
         
-//        $pics = [];
-//        $h4Elements = $html->find('.bunnypresslite_rpimg_in');
-//        foreach ($h4Elements as $k=>$v) {
-//            $img = $v->find("img");
-//            
-//            foreach ($img as $k1=>$v1) {
-//                #图片抓取
-//                $img_url = $v1->src;
-//                $save_dir = './public/uploads/down/';
-//                $res = mz_getImage($img_url, $save_dir);
-//                $img_return = "/uploads/down/".$res['file_name'];
-//                $pics[] = $img_return;
-//            }
-//        }
+        $pics = [];
+        $h4Elements = $html->find('.bunnypresslite_rpimg_in');
+        foreach ($h4Elements as $k=>$v) {
+            $img = $v->find("img");
+            
+            foreach ($img as $k1=>$v1) {
+                #图片抓取
+                $img_url = $v1->src;
+                $save_dir = './public/uploads/down/';
+                $res = mz_getImage($img_url, $save_dir);
+                $img_return = "/uploads/down/".$res['file_name'];
+                $pics[] = $img_return;
+            }
+        }
         
         #标题抓取
         $titles = [];
@@ -56,23 +56,15 @@ class Spider extends Common{
             $dates[] = $v->innertext;
         }
         
-//        $ins_data = [];
-//        foreach ($pics as $k=>$v) {
-//            $tmp = [];
-//            $tmp['pic'] = $v;
-//            $tmp['title'] = $titles[$k];
-//            $tmp['date'] = $dates[$k];
-//            $ins_data[] = $tmp;
-//        }
         
         
+        $links = [];
         $detail = $html->find(".loopbox");
         foreach ($detail as $k=>$v) {
             if ($k == 4) {
                 $a = $v->find("a");
                 foreach ($a as $k1=>$v1) {
                     $href = $v1->href;
-                    
                     
                     #获取详情
                     $html_2 = $href;
@@ -85,14 +77,15 @@ class Spider extends Common{
                         foreach ($content as $k3=>$v3) {
                             if ($k3 != 0) {
                                 $contents .= $v3;
+                            } else {
+                                $links[] = $v3;
                             }
                         }
-                        
                         #图片
                         $pics = "";
                         $figure = $v2->find("<figure>");
                         foreach ($figure as $k3=>$v3) {
-                            #if ($k3 <= 6) {
+                            if ($k3 <= 8) {
                                 $img = $v3->find("<img>");
                                 foreach ($img as $k4 => $v4) {
                                     #图片抓取 取 6张
@@ -102,30 +95,34 @@ class Spider extends Common{
                                     $img_return = "/uploads/down/" . $res['file_name'];
                                     $pics .= $img_return . ";";
                                 }
-                            #}
+                            }
                         }
                         
                         echo $contents;
                         echo $pics;
                     }
-
-                    
                 }
             }
-            
         }
         
-        exit;
         
-        
-        $content = "";
-        foreach ($detail as $k=>$v) {
-            echo $v->innertext;
+        $ins_data = [];
+        foreach ($pics as $k=>$v) {
+            $tmp = [];
+            $tmp['title'] = $titles[$k];
+            $tmp['details'] = $contents;
+            $tmp['pic'] = $v;
+            $tmp['pics'] = $pics;
+            $tmp['mark'] = $links[$k];
+            $tmp['createtime'] = time();
+            $tmp['day'] = $dates[$k];
+            $tmp['city'] = 1;
+            $ins_data[] = $tmp;
+            db("streetgirl")->insert($ins_data);
         }
-        echo $content;
+        echo "success";
         exit;
-        
-        return $this->fetch("",[]);
     }
+    
     
 }
