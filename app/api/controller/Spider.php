@@ -92,10 +92,10 @@ class Spider extends Common{
                         $pics = "";
                         $figure = $v2->find("<figure>");
                         foreach ($figure as $k3=>$v3) {
-                            $img = $v3->find("<img>");
-                            foreach ($img as $k4=>$v4) {
-                                #图片抓取 取 6张
-                                if ($k4 <= 5) {
+                            if ($k3 <= 6) {
+                                $img = $v3->find("<img>");
+                                foreach ($img as $k4 => $v4) {
+                                    #图片抓取 取 6张
                                     $img_url = $v4->src;
                                     $save_dir = './public/uploads/down/';
                                     $res = mz_getImage($img_url, $save_dir);
@@ -104,7 +104,6 @@ class Spider extends Common{
                                 }
                             }
                         }
-                        
                         
                         echo $contents;
                         echo $pics;
