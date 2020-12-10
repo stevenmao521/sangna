@@ -20,33 +20,24 @@ class Spider extends Common{
     
     public function index() {
         set_time_limit(0);
-//        #保存远程图片
-//        $img_url = "https://www.biedoul.com/Uploads/Images/35/580f4b2b8ebb4.jpg";
-//        $save_dir = './public/uploads/down/';
-//        #$filename = time();
-//        $res = mz_getImage($img_url, $save_dir);
-//        var_dump($res);
-//        exit;
-        
-        
-        
+
         \think\Loader::import('Simpledom.simple_html_dom');
         $html = file_get_html("http://www.315lz.com");
         
-        $pics = [];
-        $h4Elements = $html->find('.bunnypresslite_rpimg_in');
-        foreach ($h4Elements as $k=>$v) {
-            $img = $v->find("img");
-            
-            foreach ($img as $k1=>$v1) {
-                #图片抓取
-                $img_url = $v1->src;
-                $save_dir = './public/uploads/down/';
-                $res = mz_getImage($img_url, $save_dir);
-                $img_return = "/uploads/down/".$res['file_name'];
-                $pics[] = $img_return;
-            }
-        }
+//        $pics = [];
+//        $h4Elements = $html->find('.bunnypresslite_rpimg_in');
+//        foreach ($h4Elements as $k=>$v) {
+//            $img = $v->find("img");
+//            
+//            foreach ($img as $k1=>$v1) {
+//                #图片抓取
+//                $img_url = $v1->src;
+//                $save_dir = './public/uploads/down/';
+//                $res = mz_getImage($img_url, $save_dir);
+//                $img_return = "/uploads/down/".$res['file_name'];
+//                $pics[] = $img_return;
+//            }
+//        }
         
         #标题抓取
         $titles = [];
@@ -65,16 +56,26 @@ class Spider extends Common{
             $dates[] = $v->innertext;
         }
         
-        $ins_data = [];
-        foreach ($pics as $k=>$v) {
-            $tmp = [];
-            $tmp['pic'] = $v;
-            $tmp['title'] = $titles[$k];
-            $tmp['date'] = $dates[$k];
-            $ins_data[] = $tmp;
+//        $ins_data = [];
+//        foreach ($pics as $k=>$v) {
+//            $tmp = [];
+//            $tmp['pic'] = $v;
+//            $tmp['title'] = $titles[$k];
+//            $tmp['date'] = $dates[$k];
+//            $ins_data[] = $tmp;
+//        }
+        
+        
+        $detail = $html->find(".loopbox");
+        foreach ($detail as $k=>$v) {
+            $a = $v->find("a");
+            foreach ($a as $k1=>$v1) {
+                $href = $v1->href;
+                echo $href;
+                echo "====";
+            }
         }
         
-        print_r($ins_data);
         exit;
         
         #获取详情
