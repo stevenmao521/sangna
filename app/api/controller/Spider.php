@@ -77,13 +77,11 @@ class Spider extends Common{
                     $contents = "";
                     $content = $v2->find("<p>");
                     foreach ($content as $k3 => $v3) {
-                        
                         if ($k3 == 0) {
                             $links[] = htmlspecialchars($v3->innertext);
                         } else {
-                            $contents .= $v3;
+                            $contents .= $v3->innertext."</br>";
                         }
-                        
                     }
                     #图片
                     $pics = "";
@@ -110,7 +108,8 @@ class Spider extends Common{
         foreach ($picsdata as $k=>$v) {
             $tmp = [];
             $tmp['title'] = $titles[$k];
-            $tmp['details'] = $contents_data[$k];
+            $tmp['details'] = mb_substr($contents_data[$k],0,20)."...";
+            $tmp['hidden'] = $contents_data[$k];
             $tmp['pic'] = $v;
             $tmp['pics'] = $pics_data[$k];
             $tmp['mark'] = $links[$k];
@@ -119,6 +118,8 @@ class Spider extends Common{
             $tmp['city'] = 1;
             $tmp['href'] = $hrefs[$k];
             $tmp['cates'] = 2;
+            
+            $tmp['price'] = 4.9;
             db("streetgirl")->insert($tmp);
         }
         echo "success";

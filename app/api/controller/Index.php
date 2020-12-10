@@ -77,7 +77,7 @@ class Index extends Common{
             $info['showhidden'] = $info['hiden'];
             $info['haspay'] = 1;
         } else {
-            $info['showhidden'] = "购买后显示";
+            $info['showhidden'] = "留言后后显示";
         }
         #留言列表
         $comments = db("comments")->where("pid='{$id}' and status=1")->order("id desc")->limit(10)->select();
