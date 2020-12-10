@@ -60,62 +60,69 @@ class Spider extends Common{
         
         $links = [];
         $detail = $html->find(".loopbox");
-        foreach ($detail as $k=>$v) {
-            if ($k == 4) {
-                $a = $v->find("a");
-                foreach ($a as $k1=>$v1) {
-                    $href = $v1->href;
-                    
-                    #获取详情
-                    $html_2 = $href;
-                    $html_detail = file_get_html($html_2);
-                    $details = $html_detail->find('.post-content');
-                    foreach ($details as $k2=>$v2) {
-                        
-                        $contents = "";
-                        $content = $v2->find("<p>");
-                        foreach ($content as $k3=>$v3) {
-                            if ($k3 != 0) {
-                                $contents .= $v3;
-                            } else {
-                                $links[] = $v3;
-                            }
+        $contents_data = [];
+        $pics_data = [];
+        
+        
+        foreach ($detail as $k => $v) {
+
+            $a = $v->find("a");
+            foreach ($a as $k1 => $v1) {
+                $href = $v1->href;
+
+                #获取详情
+                $html_2 = $href;
+                $html_detail = file_get_html($html_2);
+                $details = $html_detail->find('.post-content');
+                foreach ($details as $k2 => $v2) {
+
+                    $contents = "";
+                    $content = $v2->find("<p>");
+                    foreach ($content as $k3 => $v3) {
+                        if ($k3 != 0) {
+                            $contents .= $v3;
+                        } else {
+                            $links[] = $v3;
                         }
-                        #图片
-                        $pics = "";
-                        $figure = $v2->find("<figure>");
-                        foreach ($figure as $k3=>$v3) {
-                            if ($k3 <= 8) {
-                                $img = $v3->find("<img>");
-                                foreach ($img as $k4 => $v4) {
-                                    #图片抓取 取 6张
-                                    $img_url = $v4->src;
-                                    $save_dir = './public/uploads/down/';
-                                    $res = mz_getImage($img_url, $save_dir);
-                                    $img_return = "/uploads/down/" . $res['file_name'];
-                                    $pics .= $img_return . ";";
-                                }
+                    }
+                    #图片
+                    $pics = "";
+                    $figure = $v2->find("<figure>");
+                    foreach ($figure as $k3 => $v3) {
+                        if ($k3 <= 8) {
+                            $img = $v3->find("<img>");
+                            foreach ($img as $k4 => $v4) {
+                                #图片抓取 取 6张
+                                $img_url = $v4->src;
+                                $save_dir = './public/uploads/down/';
+                                $res = mz_getImage($img_url, $save_dir);
+                                $img_return = "/uploads/down/" . $res['file_name'];
+                                $pics .= $img_return . ";";
                             }
                         }
                     }
+                    $contents_data[] = $contents;
+                    $pics_data[] = $pics;
                 }
             }
         }
-        
-        
+
+
         $ins_data = [];
         foreach ($picsdata as $k=>$v) {
             $tmp = [];
             $tmp['title'] = $titles[$k];
-            $tmp['details'] = $contents;
+            $tmp['details'] = $contents_data[$k];
             $tmp['pic'] = $v;
-            $tmp['pics'] = $pics;
+            $tmp['pics'] = $pics_data[$k];
             $tmp['mark'] = $links[$k];
             $tmp['createtime'] = time();
             $tmp['day'] = $dates[$k];
             $tmp['city'] = 1;
             $ins_data[] = $tmp;
             db("streetgirl")->insert($ins_data);
+            echo db("streetgirl")->getLastSql();
+            exit;
         }
         echo "success";
         exit;
