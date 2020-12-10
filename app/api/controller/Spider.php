@@ -89,7 +89,7 @@ class Spider extends Common{
                     $pics = "";
                     $figure = $v2->find("<figure>");
                     foreach ($figure as $k3 => $v3) {
-                        if ($k3 <= 8) {
+                        if ($k3 <= 4) {
                             $img = $v3->find("<img>");
                             foreach ($img as $k4 => $v4) {
                                 #图片抓取 取 6张
