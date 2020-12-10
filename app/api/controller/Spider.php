@@ -73,13 +73,14 @@ class Spider extends Common{
                 $href = $v1->href;
                 
                 if ($k1 == 0) {
+                    echo 111;
                     #获取详情
-                    $html_2 = $href;
-                    $html_detail = file_get_html($html_2);
-                    $details = $html_detail->find('.post-content');
-                    foreach ($details as $k2=>$v2) {
-                        echo $v2->innertext;
-                    }
+//                    $html_2 = $href;
+//                    $html_detail = file_get_html($html_2);
+//                    $details = $html_detail->find('.post-content');
+//                    foreach ($details as $k2=>$v2) {
+//                        echo $v2->innertext;
+//                    }
                     
                 }
             }
