@@ -92,7 +92,7 @@ class Spider extends Common{
                         $pics = "";
                         $figure = $v2->find("<figure>");
                         foreach ($figure as $k3=>$v3) {
-                            if ($k3 <= 6) {
+                            #if ($k3 <= 6) {
                                 $img = $v3->find("<img>");
                                 foreach ($img as $k4 => $v4) {
                                     #图片抓取 取 6张
@@ -102,7 +102,7 @@ class Spider extends Common{
                                     $img_return = "/uploads/down/" . $res['file_name'];
                                     $pics .= $img_return . ";";
                                 }
-                            }
+                            #}
                         }
                         
                         echo $contents;
