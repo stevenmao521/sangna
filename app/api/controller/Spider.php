@@ -107,6 +107,14 @@ class Spider extends Common{
             }
         }
 
+        print_r($titles);
+        print_r($contents_data);
+        print_r($pics_data);
+        print_r($links);
+        print_r($dates);
+        exit;
+        
+        
 
         $ins_data = [];
         foreach ($picsdata as $k=>$v) {
