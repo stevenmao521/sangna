@@ -24,7 +24,7 @@ class Spider extends Common{
         \think\Loader::import('Simpledom.simple_html_dom');
         $html = file_get_html("http://www.315lz.com");
         
-        $pics = [];
+        $picsdata = [];
         $h4Elements = $html->find('.bunnypresslite_rpimg_in');
         foreach ($h4Elements as $k=>$v) {
             $img = $v->find("img");
@@ -35,7 +35,7 @@ class Spider extends Common{
                 $save_dir = './public/uploads/down/';
                 $res = mz_getImage($img_url, $save_dir);
                 $img_return = "/uploads/down/".$res['file_name'];
-                $pics[] = $img_return;
+                $picsdata[] = $img_return;
             }
         }
         
@@ -97,9 +97,6 @@ class Spider extends Common{
                                 }
                             }
                         }
-                        
-                        echo $contents;
-                        echo $pics;
                     }
                 }
             }
@@ -107,7 +104,7 @@ class Spider extends Common{
         
         
         $ins_data = [];
-        foreach ($pics as $k=>$v) {
+        foreach ($picsdata as $k=>$v) {
             $tmp = [];
             $tmp['title'] = $titles[$k];
             $tmp['details'] = $contents;
