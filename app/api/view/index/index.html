@@ -53,6 +53,7 @@
     </div>
     <!-- end slide -->
     <!-- b-seller -->
+    <!--
     <div class="b-seller segments">
         <div class="container">
             <div class="section-title">
@@ -108,9 +109,34 @@
             </div>
         </div>
     </div>
+    -->
     <!-- end b-seller -->
-
     <!-- product home -->
+    <!-- product home -->
+    <div class="product-home p-bottom segments">
+        <div class="container">
+            <div class="section-title">
+                <h3><a style='color:#e82954;' href="{:url('index/lists')}?type=2">{$title['hs']}</a></h3>
+            </div>
+            <div class="product-slide owl-carousel owl-theme">
+                {volist name="$hs" id="vo" k="k"}
+                <div class="content" style="height:150px;overflow:hidden;">
+                    <div class="content" style="height:120px;overflow:hidden;">
+                    {if $vo.pic}
+                    <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt="" ></a>
+                    {else}
+                    <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
+                    {/if}
+                    </div>
+                    <p>{$vo.title}</p>
+                </div>
+                
+                {/volist}
+            </div>
+            
+    </div>
+    <!-- end product home -->
+    
     <div class="product-home segments" style="margin-top:-60px;">
         <div class="container">
             <div class="section-title">
@@ -160,30 +186,7 @@
         </div>
     </div>
     
-    <!-- product home -->
-    <div class="product-home p-bottom segments">
-        <div class="container">
-            <div class="section-title">
-                <h3><a style='color:#e82954;' href="{:url('index/lists')}?type=2">{$title['hs']}</a></h3>
-            </div>
-            <div class="product-slide owl-carousel owl-theme">
-                {volist name="$hs" id="vo" k="k"}
-                <div class="content" style="height:150px;overflow:hidden;">
-                    <div class="content" style="height:120px;overflow:hidden;">
-                    {if $vo.pic}
-                    <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt="" ></a>
-                    {else}
-                    <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
-                    {/if}
-                    </div>
-                    <p>{$vo.title}</p>
-                </div>
-                
-                {/volist}
-            </div>
-            
-    </div>
-    <!-- end product home -->
+    
     
     <!-- footer -->
     {include file="common/foot"/}

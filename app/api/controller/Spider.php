@@ -57,8 +57,6 @@ class Spider extends Common{
             $dates[] = $v->innertext;
         }
         
-        
-        
         $links = [];
         $detail = $html->find(".loopbox");
         $contents_data = [];
@@ -120,7 +118,7 @@ class Spider extends Common{
             $tmp['day'] = $dates[$k];
             $tmp['city'] = 1;
             $tmp['href'] = $hrefs[$k];
-            
+            $tmp['cates'] = 2;
             db("streetgirl")->insert($tmp);
         }
         echo "success";
