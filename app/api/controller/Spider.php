@@ -68,7 +68,7 @@ class Spider extends Common{
         
         $detail = $html->find(".loopbox");
         foreach ($detail as $k=>$v) {
-            if ($k == 1) {
+            if ($k == 3) {
                 $a = $v->find("a");
                 foreach ($a as $k1=>$v1) {
                     $href = $v1->href;
