@@ -79,7 +79,7 @@ class Spider extends Common{
                     foreach ($content as $k3 => $v3) {
                         
                         if ($k3 == 0) {
-                            $links[] = $v3->innertext;
+                            $links[] = htmlspecialchars($v3->innertext);
                         } else {
                             $contents .= $v3;
                         }
