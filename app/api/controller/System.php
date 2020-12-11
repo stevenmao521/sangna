@@ -24,6 +24,20 @@ class System extends Common{
         return $this->fetch('daoru',[]);
     }
     
+    #更新时间
+    public function updatetime() {
+        $list = db("streetgirl")->where("istrash=0 and day!= '' ")->select();
+        foreach ($list as $k=>$v) {
+            $day = $v['day'];
+            $day = str_replace("年","-",$day);
+            $day = str_replace("月","-",$day);
+            $day = str_replace("日","-",$day);
+            echo $day;exit;
+        }
+        
+        
+    }
+    
     #导入销售表
     public function daorup() {
         set_time_limit(0);
