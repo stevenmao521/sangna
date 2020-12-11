@@ -30,19 +30,19 @@ class Index extends Common{
         #过去一周
         $day_last = strtotime("-7 days",time());
         #幻灯
-        $slide = db("streetgirl")->where("istrash=0 {$whereother}")->order("id desc")->limit(4)->select();
+        $slide = db("streetgirl")->where("istrash=0 {$whereother}")->order("day_time desc")->limit(4)->select();
         #热门
         #$hot = db("streetgirl")->where("istrash=0 and ishot=1  {$whereother}")->limit(4)->select();
         $hot = db("streetgirl")->where("istrash=0 {$whereother} and createtime>='{$day_last}'")->order("hot desc")->limit(6)->select();
         #zj
         #$street = db("streetgirl")->where("istrash=0 and cates=1 and ishome=1  {$whereother}")->limit(4)->select();
-        $street = db("streetgirl")->where("istrash=0 and cates=1 {$whereother}")->order("id desc")->limit(4)->select();
+        $street = db("streetgirl")->where("istrash=0 and cates=1 {$whereother}")->order("day_time desc")->limit(4)->select();
         #hs
         #$hs = db("streetgirl")->where("istrash=0 and cates=2 and ishome=1  {$whereother}")->limit(4)->select();
-        $hs = db("streetgirl")->where("istrash=0 and cates=2 {$whereother}")->order("id desc")->limit(6)->select();
+        $hs = db("streetgirl")->where("istrash=0 and cates=2 {$whereother}")->order("day_time desc")->limit(6)->select();
         #hs
         #$lf = db("streetgirl")->where("istrash=0 and cates=3 and ishome=1  {$whereother}")->limit(4)->select();
-        $lf = db("streetgirl")->where("istrash=0 and cates=3  {$whereother}")->order("id desc")->limit(4)->select();
+        $lf = db("streetgirl")->where("istrash=0 and cates=3  {$whereother}")->order("day_time desc")->limit(4)->select();
         
         $title = [];
         $title['zj'] = db("cates")->where("id=1")->value("name");
@@ -132,7 +132,7 @@ class Index extends Common{
         #城市
         $page = input('page') ? input('page') : 1;
         $city = db("city")->where("istrash=0")->select();
-        $lists = db("streetgirl")->where($where)->order("id desc")->paginate(10, false,['query'=>request()->param()]);
+        $lists = db("streetgirl")->where($where)->order("day_time desc")->paginate(10, false,['query'=>request()->param()]);
         $page = $lists->render();
         $lists = $lists->toArray();
         
