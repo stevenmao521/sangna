@@ -32,7 +32,6 @@
     <div class="container" style='clear: both;'>
         <div class="slide">
             <div class="slide-show owl-carousel owl-theme">
-                
                 {volist name="$slide" id="vo"}
                 <div class="slide-content first-slide">
                     <div class="mask2"></div>
@@ -43,7 +42,6 @@
                     {/if}
                     <div class="caption">
                         <h2>{$vo.title}</h2>
-                        <p>{$vo.mark}</p>
                         <a href="{:url('detail')}?id={$vo.id}"><button class="button">Go</button></a>
                     </div>
                 </div>
@@ -52,15 +50,15 @@
         </div>
     </div>
     <!-- end slide -->
-    <!-- b-seller -->
+    
     
     <div class="b-seller segments">
         <div class="container">
             <div class="section-title">
-                <h3>热门榜</h3>
+                <h3><a style='color:#e82954;' href="{:url('index/lists')}?type=2">更多{$title['hs']}</a></h3>
             </div>
             <div class="row">
-                {volist name="$slide" id="vo" k="k"}
+                {volist name="$hs" id="vo" k="k"}
                 {if $k<=2}
                 <div class="col s6">
                     <div class="content">
@@ -85,8 +83,32 @@
             </div>
             <div class="row">
                 <div class="row">
-                    {volist name="$slide" id="vo" k="k"}
-                    {if $k>2}
+                    {volist name="$hs" id="vo" k="k"}
+                    {if $k>2 && $k<=4}
+                    <div class="col s6">
+                        <div class="content">
+                            <div class="image" style="height: 120px;overflow: hidden;">
+                                {if $vo.pic}
+                                <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt=""></a>
+                                {else}
+                                <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
+                                {/if}
+                            </div>
+                            <div class="text">
+                                <a href="{:url('detail')}?id={$vo.id}">
+                                    <p>{$vo.title}</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {/if}
+                    {/volist}
+                </div>
+            </div>
+            <div class="row">
+                <div class="row">
+                    {volist name="$hs" id="vo" k="k"}
+                    {if $k>4}
                     <div class="col s6">
                         <div class="content">
                             <div class="image" style="height: 120px;overflow: hidden;">
@@ -110,83 +132,165 @@
         </div>
     </div>
     
-    <!-- end b-seller -->
-    <!-- product home -->
-    <!-- product home -->
-    <div class="product-home p-bottom segments">
+    <div class="b-seller segments">
         <div class="container">
             <div class="section-title">
-                <h3><a style='color:#e82954;' href="{:url('index/lists')}?type=2">{$title['hs']}</a></h3>
+                <h3><a style='color:#e82954;' href="{:url('index/lists')}?type=2">更多{$title['zj']}</a></h3>
             </div>
-            <div class="product-slide owl-carousel owl-theme">
-                {volist name="$hs" id="vo" k="k"}
-                <div class="content" style="height:150px;overflow:hidden;">
-                    <div class="content" style="height:120px;overflow:hidden;">
-                    {if $vo.pic}
-                    <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt="" ></a>
-                    {else}
-                    <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
-                    {/if}
-                    </div>
-                    <p>{$vo.title}</p>
-                </div>
-                
-                {/volist}
-            </div>
-            
-    </div>
-    <!-- end product home -->
-    
-    <div class="product-home segments" style="margin-top:-60px;">
-        <div class="container">
-            <div class="section-title">
-                <h3><a style='color:#e82954;' href="{:url('index/lists')}?type=1">{$title['zj']}</a></h3>
-            </div>
-            <div class="product-slide owl-carousel owl-theme">
+            <div class="row">
                 {volist name="$street" id="vo" k="k"}
-                <div class="content" style="height:150px;overflow:hidden;">
-                    <div class="content" style="height:120px;overflow:hidden;">
-                    {if $vo.pic}
-                    <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt="" ></a>
-                    {else}
-                    <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
-                    {/if}
+                {if $k<=2}
+                <div class="col s6">
+                    <div class="content">
+                        <div class="image" style="height: 120px;overflow: hidden;">
+                            
+                            {if $vo.pic}
+                            <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt=""></a>
+                            {else}
+                            <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
+                            {/if}
+                            
+                        </div>
+                        <div class="text">
+                            <a href="{:url('detail')}?id={$vo.id}">
+                                <p>{$vo.title}</p>
+                            </a>
+                        </div>
                     </div>
-                    <p>{$vo.title}</p>
                 </div>
-                
+                {/if}
                 {/volist}
             </div>
-            
+            <div class="row">
+                <div class="row">
+                    {volist name="$street" id="vo" k="k"}
+                    {if $k>2 && $k<=4}
+                    <div class="col s6">
+                        <div class="content">
+                            <div class="image" style="height: 120px;overflow: hidden;">
+                                {if $vo.pic}
+                                <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt=""></a>
+                                {else}
+                                <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
+                                {/if}
+                            </div>
+                            <div class="text">
+                                <a href="{:url('detail')}?id={$vo.id}">
+                                    <p>{$vo.title}</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {/if}
+                    {/volist}
+                </div>
+            </div>
+            <div class="row">
+                <div class="row">
+                    {volist name="$street" id="vo" k="k"}
+                    {if $k>4}
+                    <div class="col s6">
+                        <div class="content">
+                            <div class="image" style="height: 120px;overflow: hidden;">
+                                {if $vo.pic}
+                                <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt=""></a>
+                                {else}
+                                <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
+                                {/if}
+                            </div>
+                            <div class="text">
+                                <a href="{:url('detail')}?id={$vo.id}">
+                                    <p>{$vo.title}</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {/if}
+                    {/volist}
+                </div>
+            </div>
         </div>
     </div>
-    <!-- end product home -->
     
-    <div class="product-home p-bottom segments">
+    <div class="b-seller segments">
         <div class="container">
             <div class="section-title">
-                <h3><a style='color:#e82954;' href="{:url('index/lists')}?type=3">{$title['lf']}</a></h3>
+                <h3><a style='color:#e82954;' href="{:url('index/lists')}?type=2">更多{$title['lf']}</a></h3>
             </div>
-            <div class="product-slide owl-carousel owl-theme">
+            <div class="row">
                 {volist name="$lf" id="vo" k="k"}
-                <div class="content" style="height:150px;overflow:hidden;">
-                    <div class="content" style="height:120px;overflow:hidden;">
-                    {if $vo.pic}
-                    <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt="" ></a>
-                    {else}
-                    <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
-                    {/if}
+                {if $k<=2}
+                <div class="col s6">
+                    <div class="content">
+                        <div class="image" style="height: 120px;overflow: hidden;">
+                            
+                            {if $vo.pic}
+                            <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt=""></a>
+                            {else}
+                            <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
+                            {/if}
+                            
+                        </div>
+                        <div class="text">
+                            <a href="{:url('detail')}?id={$vo.id}">
+                                <p>{$vo.title}</p>
+                            </a>
+                        </div>
                     </div>
-                    <p>{$vo.title}</p>
                 </div>
-                
+                {/if}
                 {/volist}
             </div>
-            
+            <div class="row">
+                <div class="row">
+                    {volist name="$lf" id="vo" k="k"}
+                    {if $k>2 && $k<=4}
+                    <div class="col s6">
+                        <div class="content">
+                            <div class="image" style="height: 120px;overflow: hidden;">
+                                {if $vo.pic}
+                                <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt=""></a>
+                                {else}
+                                <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
+                                {/if}
+                            </div>
+                            <div class="text">
+                                <a href="{:url('detail')}?id={$vo.id}">
+                                    <p>{$vo.title}</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {/if}
+                    {/volist}
+                </div>
+            </div>
+            <div class="row">
+                <div class="row">
+                    {volist name="$lf" id="vo" k="k"}
+                    {if $k>4}
+                    <div class="col s6">
+                        <div class="content">
+                            <div class="image" style="height: 120px;overflow: hidden;">
+                                {if $vo.pic}
+                                <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt=""></a>
+                                {else}
+                                <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
+                                {/if}
+                            </div>
+                            <div class="text">
+                                <a href="{:url('detail')}?id={$vo.id}">
+                                    <p>{$vo.title}</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {/if}
+                    {/volist}
+                </div>
+            </div>
         </div>
     </div>
-    
-    
     
     <!-- footer -->
     {include file="common/foot"/}
