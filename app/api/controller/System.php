@@ -31,7 +31,7 @@ class System extends Common{
             $day = $v['day'];
             $day = str_replace("年","-",$day);
             $day = str_replace("月","-",$day);
-            $day = str_replace("日","-",$day);
+            $day = str_replace("日","",$day);
             echo $day;exit;
         }
         
