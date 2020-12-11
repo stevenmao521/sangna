@@ -15,22 +15,38 @@
                 <div class="desc-short">
                     <h4>{$info.title}</h4>
                     <!--<h5>￥{$info.price}</h5>-->
+                    <button class="button"><i class="fa fa-shopping-cart"></i><a style="color:#fff;" href="{:url('Buy/pay')}?id={$info.id}">获取隐藏信息</a></button>
+                    {if $info['haspay'] !=1 }
+                    {/if}
                 </div>
                 
                 <div class="desc-long">
-                    <h5>详细介绍</h5>
+                    <h5>简介</h5>
                     <p>{$info.details}</p>
                 </div>
+                
                 <div class="desc-short">
+                    <h4>- 隐藏细节【成功购买后返回页面即可看到隐藏信息，如未成功请在下方留言】 -</h4>
                     <p>{$info.showhidden}</p>
                 </div>
             </div>
             
+            {if $info['haspay'] !=1 }
+            <div class="content">
+                {volist name='$info.pics' id="vo" key='k'}
+                {if $k<=2}
+                <img src="__PUBLIC__/{$vo}" alt="" style="width:100%;">
+                {/if}
+                {/volist}
+                购买后显示更多图片...
+            </div>
+            {else}
             <div class="content">
                 {volist name='$info.pics' id="vo" key='k'}
                 <img src="__PUBLIC__/{$vo}" alt="" style="width:100%;">
                 {/volist}
             </div>
+            {/if}
             
             <div class="review">
                 <h5>留言列表</h5>

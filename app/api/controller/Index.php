@@ -73,12 +73,13 @@ class Index extends Common{
         
         #是否显示隐藏
         $order = db("orders")->where("orderid='{$id}' and uid='{$tuserId}' and status=1")->find();
-        $info['details'] = mb_substr($info['hiden'], 0, 50);
+        #$info['details'] = mb_substr($info['hiden'], 0, 50);
         if ($order && $order['status'] == 1) {
             $info['showhidden'] = $info['hiden'];
             $info['haspay'] = 1;
         } else {
-            $info['showhidden'] = "留言后后显示";
+            $info['showhidden'] = $info['hiden'];
+            #$info['showhidden'] = "留言后后显示";
         }
         
         #留言列表
