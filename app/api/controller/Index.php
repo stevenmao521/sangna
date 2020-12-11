@@ -36,13 +36,13 @@ class Index extends Common{
         $hot = db("streetgirl")->where("istrash=0 {$whereother} and createtime>='{$day_last}'")->order("hot desc")->limit(6)->select();
         #zj
         #$street = db("streetgirl")->where("istrash=0 and cates=1 and ishome=1  {$whereother}")->limit(4)->select();
-        $street = db("streetgirl")->where("istrash=0 and cates=1 {$whereother}")->order("id desc")->limit(6)->select();
+        $street = db("streetgirl")->where("istrash=0 and cates=1 {$whereother}")->order("id desc")->limit(4)->select();
         #hs
         #$hs = db("streetgirl")->where("istrash=0 and cates=2 and ishome=1  {$whereother}")->limit(4)->select();
         $hs = db("streetgirl")->where("istrash=0 and cates=2 {$whereother}")->order("id desc")->limit(6)->select();
         #hs
         #$lf = db("streetgirl")->where("istrash=0 and cates=3 and ishome=1  {$whereother}")->limit(4)->select();
-        $lf = db("streetgirl")->where("istrash=0 and cates=3  {$whereother}")->order("id desc")->limit(6)->select();
+        $lf = db("streetgirl")->where("istrash=0 and cates=3  {$whereother}")->order("id desc")->limit(4)->select();
         
         $title = [];
         $title['zj'] = db("cates")->where("id=1")->value("name");
