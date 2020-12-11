@@ -32,10 +32,13 @@ class System extends Common{
             $day = str_replace("年","-",$day);
             $day = str_replace("月","-",$day);
             $day = str_replace("日","",$day);
-            echo $day;exit;
+            db("streetgirl")->where("id='{$v['id']}'")->update(["day_time"=>$day]);
         }
         
-        
+        $list = db("streetgirl")->where("istrash=0 and day= '' ")->select();
+        foreach ($list as $k=>$v) {
+            db("streetgirl")->where("id='{$v['id']}'")->update(["day_time"=>date("Y-m-d",$v['createtime'])]);
+        }
     }
     
     #导入销售表
