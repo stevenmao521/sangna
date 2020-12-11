@@ -185,30 +185,6 @@
                     {/volist}
                 </div>
             </div>
-            <div class="row">
-                <div class="row">
-                    {volist name="$street" id="vo" k="k"}
-                    {if $k>4}
-                    <div class="col s6">
-                        <div class="content">
-                            <div class="image" style="height: 120px;overflow: hidden;">
-                                {if $vo.pic}
-                                <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt=""></a>
-                                {else}
-                                <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
-                                {/if}
-                            </div>
-                            <div class="text">
-                                <a href="{:url('detail')}?id={$vo.id}">
-                                    <p>{$vo.title}</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {/if}
-                    {/volist}
-                </div>
-            </div>
         </div>
     </div>
     
@@ -265,30 +241,7 @@
                     {/volist}
                 </div>
             </div>
-            <div class="row">
-                <div class="row">
-                    {volist name="$lf" id="vo" k="k"}
-                    {if $k>4}
-                    <div class="col s6">
-                        <div class="content">
-                            <div class="image" style="height: 120px;overflow: hidden;">
-                                {if $vo.pic}
-                                <a href="{:url('detail')}?id={$vo.id}"><img src="__PUBLIC__/{$vo.pic}" alt=""></a>
-                                {else}
-                                <a href="{:url('detail')}?id={$vo.id}"><img src="__STATIC__/sangna/images/default.jpg" alt=""></a>
-                                {/if}
-                            </div>
-                            <div class="text">
-                                <a href="{:url('detail')}?id={$vo.id}">
-                                    <p>{$vo.title}</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {/if}
-                    {/volist}
-                </div>
-            </div>
+            
         </div>
     </div>
     
