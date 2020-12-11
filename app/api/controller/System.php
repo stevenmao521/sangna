@@ -35,7 +35,7 @@ class System extends Common{
             db("streetgirl")->where("id='{$v['id']}'")->update(["day_time"=>$day]);
         }
         
-        $list = db("streetgirl")->where("istrash=0 and day= '' ")->select();
+        $list = db("streetgirl")->where("istrash=0 and day is null")->select();
         foreach ($list as $k=>$v) {
             db("streetgirl")->where("id='{$v['id']}'")->update(["day_time"=>date("Y-m-d",$v['createtime'])]);
         }
