@@ -120,6 +120,13 @@ class Spider extends Common{
             $tmp['cates'] = 2;
             
             $tmp['price'] = 4.9;
+            
+            $day = $dates[$k];
+            $day = str_replace("年","-",$day);
+            $day = str_replace("月","-",$day);
+            $day = str_replace("日","",$day);
+            $tmp['day_time'] = $day;
+            
             db("streetgirl")->insert($tmp);
         }
         echo "success";
