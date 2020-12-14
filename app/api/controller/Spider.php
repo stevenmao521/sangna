@@ -133,6 +133,24 @@ class Spider extends Common{
         exit;
     }
     
+    #抓取评论
+    public function getcomments() {
+        \think\Loader::import('Simpledom.simple_html_dom');
+        #$href = db("streetgirl")->where("istrash=0 and href is not null and hasupdatecomments=0")->order("id desc")->find();
+        
+        #if ($href) {
+            #$url = $href['href'];
+            $url = "http://www.315lz.com/7802.html";
+            $html_detail = file_get_html($url);
+            
+            $comments = $html_detail->find(".comment-body");
+            foreach ($comments as $k=>$v) {
+                $author = $v->find(".comment-auther");
+                echo $author[0]->innertext;
+            } 
+        #}
+    }
+    
     #系统补起多图
     public function getpics() {
         \think\Loader::import('Simpledom.simple_html_dom');
