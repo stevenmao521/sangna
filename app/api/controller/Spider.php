@@ -136,15 +136,18 @@ class Spider extends Common{
     #抓取评论
     public function getcomments() {
         \think\Loader::import('Simpledom.simple_html_dom');
-        #$href = db("streetgirl")->where("istrash=0 and href is not null and hasupdatecomments=0")->order("id desc")->find();
+        $href = db("streetgirl")->where("istrash=0 and href is not null and hasupdatecomments=0")->order("id desc")->find();
         
-        #if ($href) {
-            #$url = $href['href'];
-            $url = "http://www.315lz.com/7802.html";
+        if ($href) {
+            $url = $href['href'];
+            #$url = "http://www.315lz.com/7802.html";
             $html_detail = file_get_html($url);
             
             $comments = $html_detail->find(".comment-body");
+            $comment = [];
             foreach ($comments as $k=>$v) {
+                $ins = [];
+                
                 $author = $v->find(".comment-auther");
                 $author_txt = $author[0]->innertext;
                 $str= preg_replace('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i', '', $author_txt);
@@ -155,15 +158,27 @@ class Spider extends Common{
                 $month = mb_substr($date_str,5,2);
                 $day = mb_substr($date_str,8,2);
                 $time = mb_substr($date_str,14);
-                echo $year."-".$month."-".$day." ".$time;
+                
                 
                 $text = $v->find(".comment-text");
                 $text_str = $text[0]->innertext;
-                echo $text_str;
                 
-                
-            } 
-        #}
+                $ins['nickname'] = $str;
+                $ins['contents'] = $text_str;
+                $ins['createtime'] = strtotime($time);
+                $ins['status'] = 1;
+                $ins['pid'] = $href['id'];
+                $comment[] = $ins;
+            }
+            db("comments")->insertAll($comments);
+            db("streetgirl")->where("id='{$href['id']}'")->update([
+                "hasupdate"=>1
+            ]);
+        } else {
+            db("streetgirl")->where("id='{$href['id']}'")->update([
+                "hasupdate"=>1
+            ]);
+        }
     }
     
     #系统补起多图
