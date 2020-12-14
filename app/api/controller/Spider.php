@@ -159,13 +159,12 @@ class Spider extends Common{
                 $day = mb_substr($date_str,8,2);
                 $time = mb_substr($date_str,14);
                 
-                
                 $text = $v->find(".comment-text");
                 $text_str = $text[0]->innertext;
                 
                 $ins['nickname'] = $str;
                 $ins['contents'] = $text_str;
-                $ins['createtime'] = strtotime($time);
+                $ins['createtime'] = strtotime($year."-".$month."-".$day." ".$time);
                 $ins['status'] = 1;
                 $ins['pid'] = $href['id'];
                 $comment[] = $ins;
@@ -173,11 +172,11 @@ class Spider extends Common{
             }
             db("comments")->insertAll($comment);
             db("streetgirl")->where("id='{$href['id']}'")->update([
-                "hasupdate"=>1
+                "hasupdatecomments"=>1
             ]);
         } else {
             db("streetgirl")->where("id='{$href['id']}'")->update([
-                "hasupdate"=>1
+                "hasupdatecomments"=>1
             ]);
         }
     }
