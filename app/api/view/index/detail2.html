@@ -30,24 +30,11 @@
                     <p>{$info.showhidden}</p>
                 </div>
             </div>
-            
-            {if $info['haspay'] !=1 }
-            <div class="content">
-                {volist name='$info.pics' id="vo" key='k'}
-                {if $k<=2}
-                <img src="__PUBLIC__/{$vo}" alt="" style="width:100%;">
-                {/if}
-                {/volist}
-                购买后显示更多图片...
-            </div>
-            {else}
             <div class="content">
                 {volist name='$info.pics' id="vo" key='k'}
                 <img src="__PUBLIC__/{$vo}" alt="" style="width:100%;">
                 {/volist}
             </div>
-            {/if}
-            
             <div class="review">
                 <h5>留言列表</h5>
                 {volist name='$comments' id='vo'}

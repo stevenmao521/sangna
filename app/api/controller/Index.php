@@ -132,7 +132,7 @@ class Index extends Common{
                 $info['showhidden'] = $info['hiden'];
                 $info['haspay'] = 1;
             } else {
-                $info['showhidden'] = "留言后后显示";
+                $info['showhidden'] = "";
             }
         } else {
             #是否显示隐藏
