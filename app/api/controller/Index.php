@@ -113,7 +113,7 @@ class Index extends Common{
         $id = input("id");
         $info = db("streetgirl")->where("id='{$id}'")->find();
         $ip = getIp();
-        $tuserId = session($ip);
+        $tuserId = cookie("uid");
         
         if ($info['pics']) {
             $pic = explode(";",substr($info['pics'],0,-1));
