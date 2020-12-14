@@ -42,6 +42,10 @@ class Common extends Controller{
             db("tuser")->where("id='{$tuser['id']}'")->update([
                 "lastlogin"=>time()
             ]);
+            if ($tuser['forbid'] == 1) {
+                echo 404;
+                exit;
+            }
             cookie("username", $tuser['username'], 3600*24*7);
         }
         
