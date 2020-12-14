@@ -148,7 +148,20 @@ class Spider extends Common{
                 $author = $v->find(".comment-auther");
                 $author_txt = $author[0]->innertext;
                 $str= preg_replace('/<\s*img\s+[^>]*?src\s*=\s*(\'|\")(.*?)\\1[^>]*?\/?\s*>/i', '', $author_txt);
-                echo $str;
+                
+                $date = $v->find(".comment-date");
+                $date_str = $date[0]->innertext;
+                $year = mb_substr($date_str,0,3);
+                $month = mb_substr($date_str,5,6);
+                $day = mb_substr($date_str,8,9);
+                $time = mb_substr($date_str,14);
+                echo $year."-".$month."-".$day." ".$time;
+                
+                $text = $v->find(".comment-text");
+                $text_str = $text[0]->innertext;
+                echo $text_str;
+                
+                
             } 
         #}
     }
