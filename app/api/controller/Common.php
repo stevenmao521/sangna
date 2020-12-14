@@ -44,7 +44,7 @@ class Common extends Controller{
             ]);
             cookie("username", $tuser['username'], 3600*24*7);
         }
-        cookie("uid",null);
+        
         
         $cites = db("city")->where("istrash=0")->select();
         if (session("city")) {
