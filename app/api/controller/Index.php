@@ -122,15 +122,29 @@ class Index extends Common{
         
         db("streetgirl")->where("id='{$id}'")->setInc("hot");
         
-        #是否显示隐藏
-        $order = db("orders")->where("orderid='{$id}' and uid='{$tuserId}' and status=1")->find();
-        #$info['details'] = mb_substr($info['hiden'], 0, 50);
-        if ($order && $order['status'] == 1) {
-            $info['showhidden'] = $info['hiden'];
-            $info['haspay'] = 1;
+        $price = false;
+        if ($info['isprice'] == 1) {
+            $price = true;
+            #是否显示隐藏
+            $order = db("orders")->where("orderid='{$id}' and uid='{$tuserId}' and status=1")->find();
+            #$info['details'] = mb_substr($info['hiden'], 0, 50);
+            if ($order && $order['status'] == 1) {
+                $info['showhidden'] = $info['hiden'];
+                $info['haspay'] = 1;
+            } else {
+                $info['showhidden'] = "留言后后显示";
+            }
         } else {
-            $info['showhidden'] = $info['hiden'];
-            #$info['showhidden'] = "留言后后显示";
+            #是否显示隐藏
+            $order = db("orders")->where("orderid='{$id}' and uid='{$tuserId}' and status=1")->find();
+            #$info['details'] = mb_substr($info['hiden'], 0, 50);
+            if ($order && $order['status'] == 1) {
+                $info['showhidden'] = $info['hiden'];
+                $info['haspay'] = 1;
+            } else {
+                $info['showhidden'] = $info['hiden'];
+                #$info['showhidden'] = "留言后后显示";
+            }
         }
         
         #留言列表
@@ -143,7 +157,12 @@ class Index extends Common{
                 }
             }
         }
-        return $this->fetch('',['info'=>$info,"id"=>$id, "comments"=>$comments]);
+        if ($price) {
+            return $this->fetch('detail2',['info'=>$info,"id"=>$id, "comments"=>$comments]);
+        } else {
+            return $this->fetch('',['info'=>$info,"id"=>$id, "comments"=>$comments]);
+        }
+        
     }
     
     public function lists() {
