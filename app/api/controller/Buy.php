@@ -47,7 +47,7 @@ class Buy extends Common{
         }
         
         $ip = getIp();
-        $tuserid = session($ip);
+        $tuserid = cookie("uid");
         
         $order_sn = mz_get_order_sn();
         $res = db("orders")->insert([
