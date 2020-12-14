@@ -166,14 +166,13 @@ class Spider extends Common{
                 
                 $ins['nickname'] = $str;
                 $ins['contents'] = $text_str;
-                $ins['createtime'] = $af_time;
+                $ins['createtime'] = strtotime($af_time);
                 $ins['status'] = 1;
                 $ins['pid'] = $href['id'];
                 $comment[] = $ins;
                 
             }
             
-            print_r($comment);exit;
             db("comments")->insertAll($comment);
             db("streetgirl")->where("id='{$href['id']}'")->update([
                 "hasupdatecomments"=>1
