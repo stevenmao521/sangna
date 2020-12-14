@@ -18,7 +18,50 @@
     <link rel="stylesheet" href="__STATIC__/sangna/css/style.css">
 </head>
 
-<body topmargin="0" oncontextmenu="return false" ondragstart="return false" onselectstart ="return false" onselect="document.selection.empty()" oncopy="document.selection.empty()" onbeforecopy="return false" onmouseup="document.selection.empty()" > 
+<body   topmargin="0" oncontextmenu="return false" ondragstart="return false" onselectstart ="return false" onselect="document.selection.empty()" oncopy="document.selection.empty()" onbeforecopy="return false" onmouseup="document.selection.empty()" > 
+    
+    <!--登录框-->
+    {if $showlogin == 1}
+    <div class="bg"></div>
+    <div class="wrape_conten">
+        <div class="container">
+            <div class="signin-contents">
+                <div class="pages-title">
+                    <h3>登录/注册</h3>
+                </div>
+                <form action="{:url('Index/login')}" method='post'> 
+                    <input type="text" placeholder="用户名" name='username'>
+                    <input type="password" placeholder="密码" name='password'>
+                    <button class="button"><i class="fa fa-send"></i>提交</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {/if}
+    <style>
+        .bg{
+            position:fixed;
+            height:100%;
+            width:100%;
+            top:0;
+            left:0;
+            background:#000;
+            z-index:1000;
+            opacity: 0.5;
+        }
+        .wrape_conten{
+            width:80%;
+            height:260px;
+            position:fixed;
+            top:50%;
+            margin-top:-45%;
+            left:10%;
+            margin-left:0%;
+            z-index:10001;
+            background:#fff;
+            border-radius: 10px;
+        }
+    </style>
     <!-- navbar -->
     <div class="navbar">
         <div class="container">

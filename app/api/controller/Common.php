@@ -28,61 +28,21 @@ class Common extends Controller{
         $title['lf'] = db("cates")->where("id=3")->value("name");
         $title['hs'] = db("cates")->where("id=2")->value("name");
         
-        #进入首页获取IP信息并保存
-        $ip = getIp();
-        $has_cookie = session($ip);
-        $user = db("tuser")->where("ip='{$ip}'")->find();
-        if ($user) {
-            if ($user['forbid'] == 1) {
-                echo 404;
-                exit;
-            }
-        }
         
-        if (!$has_cookie) {
-            
-            #$ip = "186.226.69.114";
-            $city = getCitynew($ip);
-            /*
-            if ($city) {
-                if ($city["data"][0] == "中国") {
-                    if ($user) {
-                        db("tuser")->where("id='{$tuser['id']}'")->update(["forbid"=>1]);
-                    } else {
-                        db("tuser")->insertGetId([
-                            "ip"=>$ip,
-                            "lastlogin"=>time(),
-                            "createtime"=>time(),
-                            "cname"=>$city["data"][0].$city["data"][1].$city["data"][2],
-                            "forbid"=>1
-                        ]);
-                    }
-                    echo 404;
-                    exit;
-                }
-            }
-            */
-            
-            #根据ip注册为新用户
-            if ($city) {
-                $cname = $city["data"][0].$city["data"][1].$city["data"][2];
-            } else {
-                $cname = "";
-            }
-            $user = db("tuser")->where("ip='{$ip}'")->find();
-            if ($user) {
-                db("tuser")->where("ip='{$ip}'")->update(['lastlogin'=>time()]);
-                $tuser_id = $user['id'];
-            } else {
-                
-                $tuser_id = db("tuser")->insertGetId([
-                    "ip"=>$ip,
-                    "lastlogin"=>time(),
-                    "createtime"=>time(),
-                    "cname"=>$cname,
-                ]);
-            }
-            session($ip,$tuser_id);
+        #进入首页获取IP信息并保存
+        #获取cookie
+        $uid = cookie("uid");
+        
+        $show_login = false;
+        if (!$uid) {
+            #弹出注册登录框
+            $show_login = true;
+        } else {
+            $tuser = db("tuser")->where("id='{$uid}'")->find();
+            db("tuser")->where("id='{$tuser['id']}'")->update([
+                "lastlogin"=>time()
+            ]);
+            cookie("username", $tuser['username'], 3600*24*7);
         }
         
         $cites = db("city")->where("istrash=0")->select();
@@ -94,6 +54,8 @@ class Common extends Controller{
             session("city", 0);
         }
         
+        $this->assign("username", cookie("username"));
+        $this->assign("showlogin", $show_login);
         $this->assign("city",$cites);
         $this->assign("def_city",$def_city);
         $this->assign('title',$title);

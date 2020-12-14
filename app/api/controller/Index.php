@@ -18,6 +18,53 @@ class Index extends Common{
         parent::_initialize();
     }
     
+    #登录
+    public function login() {
+        $name = mz_filter(input("username"));
+        $password = mz_filter(input("password"));
+        $ips = getIp();
+        $tuser = db("tuser")->where("username='{$name}'")->find();
+        
+        if (strlen($name) > 20) {
+            $this->error("用户名过长");
+        }
+        
+        if (!$tuser) {
+            #ip查看
+            $ip = db("tuser")->where("ip='{$ips}'")->order("id desc")->find();
+            
+            if($ip) {
+                $diff = time() - $ip['createtime'];
+                if ($diff < 3600) {
+                    $this->error("请勿频繁操作");
+                }
+            }
+            
+            #注册
+            $tuser_id = db("tuser")->insertGetId([
+                "ip"=>$ips,
+                "lastlogin"=>time(),
+                "createtime"=>time(),
+                "username"=>$name,
+                "password"=>md5($password)
+            ]);
+            cookie("uid", $tuser_id, 3600*24*7);
+            $this->success("注册成功");
+        } else {
+            if (md5($password) == $tuser['password']) {
+                #成功
+                cookie("uid", $tuser['id'], 3600*24*7);
+                db("tuser")->where("id='{$tuser['id']}'")->update([
+                    "lastlogin"=>time()
+                ]);
+                
+                $this->success("登录成功");
+            } else {
+                $this->error("密码错误");
+            }
+        }
+    }
+    
     public function index() {
         $city = session("city");
         

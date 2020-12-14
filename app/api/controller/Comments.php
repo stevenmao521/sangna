@@ -23,6 +23,10 @@ class Comments extends Common{
         $contents = input("contents");
         $ip = getIp();
         $id = input("id");
+        $uid = cookie("uid");
+        if (!$uid) {
+            return mz_apierror("请先登录");
+        }
         
         $has = db("comments")->where("ip='{$ip}'")->order("id desc")->find();
         if ($has) {
@@ -36,7 +40,8 @@ class Comments extends Common{
                     "contents"=>$contents,
                     "ip"=>$ip,
                     "status"=>0,
-                    "createtime"=>time()
+                    "createtime"=>time(),
+                    "userid"=>cookie("uid"),
                 ));
             }
         } else {
@@ -46,7 +51,8 @@ class Comments extends Common{
                 "contents"=>$contents,
                 "ip"=>$ip,
                 "status"=>0,
-                "createtime"=>time()
+                "createtime"=>time(),
+                "userid"=>cookie("uid"),
             ));
         }
         return mz_apisuc("留言成功,管理员审核");
