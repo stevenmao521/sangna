@@ -157,7 +157,7 @@ class Spider extends Common{
                 $year = mb_substr($date_str,0,4);
                 $month = mb_substr($date_str,5,2);
                 $day = mb_substr($date_str,8,2);
-                $time = mb_substr($date_str,12,6);
+                $time = mb_substr($date_str,13,6);
                 $af_time = $year."-".$month."-".$day." ".$time;
                 $af_time = str_replace("日", "", $af_time);
                 
