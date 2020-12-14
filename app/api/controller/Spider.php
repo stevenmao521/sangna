@@ -151,9 +151,9 @@ class Spider extends Common{
                 
                 $date = $v->find(".comment-date");
                 $date_str = $date[0]->innertext;
-                $year = mb_substr($date_str,0,3);
-                $month = mb_substr($date_str,5,6);
-                $day = mb_substr($date_str,8,9);
+                $year = mb_substr($date_str,0,4);
+                $month = mb_substr($date_str,5,2);
+                $day = mb_substr($date_str,8,2);
                 $time = mb_substr($date_str,14);
                 echo $year."-".$month."-".$day." ".$time;
                 
