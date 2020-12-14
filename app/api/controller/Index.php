@@ -29,6 +29,10 @@ class Index extends Common{
             $this->error("用户名过长");
         }
         
+        if (!$name) {
+            $this->error("请填写用户名");
+        }
+        
         if (!$tuser) {
             #ip查看
             $ip = db("tuser")->where("ip='{$ips}'")->order("id desc")->find();
