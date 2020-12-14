@@ -170,6 +170,8 @@ class Spider extends Common{
                 $comment[] = $ins;
                 
             }
+            
+            print_r($comment);exit;
             db("comments")->insertAll($comment);
             db("streetgirl")->where("id='{$href['id']}'")->update([
                 "hasupdatecomments"=>1
