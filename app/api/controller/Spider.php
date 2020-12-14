@@ -146,7 +146,11 @@ class Spider extends Common{
             $comments = $html_detail->find(".comment-body");
             foreach ($comments as $k=>$v) {
                 $author = $v->find(".comment-auther");
-                echo $author[0]->innertext;
+                $author_txt = $author[0]->innertext;
+                
+                $pattern_src = '/<img[\s\S]*?*?/>/';
+                $filter = preg_replace($pattern_src,'',$author_txt);
+                echo $filter;
             } 
         #}
     }
