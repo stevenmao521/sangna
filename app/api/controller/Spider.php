@@ -148,7 +148,7 @@ class Spider extends Common{
                 $author = $v->find(".comment-auther");
                 $author_txt = $author[0]->innertext;
                 
-                $pattern_src = '/<img[\s\S]*?*?/>/';
+                $pattern_src = '/<img[\s\S]*?*?\/>/';
                 $filter = preg_replace($pattern_src,'',$author_txt);
                 echo $filter;
             } 
