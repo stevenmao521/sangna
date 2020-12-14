@@ -157,14 +157,16 @@ class Spider extends Common{
                 $year = mb_substr($date_str,0,4);
                 $month = mb_substr($date_str,5,2);
                 $day = mb_substr($date_str,8,2);
-                $time = mb_substr($date_str,14);
+                $time = mb_substr($date_str,14,6);
+                $af_time = $year."-".$month."-".$day." ".$time;
+                $af_time = str_replace("日", "", $af_time);
                 
                 $text = $v->find(".comment-text");
                 $text_str = $text[0]->innertext;
                 
                 $ins['nickname'] = $str;
                 $ins['contents'] = $text_str;
-                $ins['createtime'] = $year."-".$month."-".$day." ".$time;
+                $ins['createtime'] = $af_time;
                 $ins['status'] = 1;
                 $ins['pid'] = $href['id'];
                 $comment[] = $ins;
