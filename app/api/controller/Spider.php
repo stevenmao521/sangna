@@ -164,7 +164,7 @@ class Spider extends Common{
                 
                 $ins['nickname'] = $str;
                 $ins['contents'] = $text_str;
-                $ins['createtime'] = strtotime($year."-".$month."-".$day." ".$time);
+                $ins['createtime'] = $year."-".$month."-".$day." ".$time;
                 $ins['status'] = 1;
                 $ins['pid'] = $href['id'];
                 $comment[] = $ins;
