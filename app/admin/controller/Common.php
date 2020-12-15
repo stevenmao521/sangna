@@ -8,12 +8,12 @@ class Common extends Controller
     protected $mod,$role,$system,$nav,$menudata,$cache_model,$categorys,$module,$moduleid,$adminRules,$HrefId;
     public function _initialize()
     {
-        $ip = getIp();
-        
-        if (!in_array($ip, [ '104.160.43.105','144.34.189.154','199.193.127.187','185.212.57.165','104.193.8.196'])) {
-            echo "404";
-            exit;
-        }
+//        $ip = getIp();
+//        
+//        if (!in_array($ip, [ '104.160.43.105','144.34.189.154','199.193.127.187','185.212.57.165','104.193.8.196'])) {
+//            echo "404";
+//            exit;
+//        }
 
         //判断管理员是否登录
         if (!session('aid')) {
