@@ -33,6 +33,16 @@ class Common extends Controller{
         #获取cookie
         $uid = cookie("uid");
         
+        #ip屏蔽
+        $ip = getIp();
+        $ip_user = db("tuser")->where("ip='{$ip}'")->order("id desc")->find();
+        if ($ip_user) {
+            if ($ip_user['forbid'] == 1) {
+                echo "fuck off jerk!";
+                exit;
+            }
+        }
+        
         $show_login = false;
         if (!$uid) {
             #弹出注册登录框
