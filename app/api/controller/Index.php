@@ -39,7 +39,7 @@ class Index extends Common{
             
             if($ip) {
                 $diff = time() - $ip['createtime'];
-                if ($diff < 3600) {
+                if ($diff < 3600*5) {
                     $this->error("请勿频繁操作");
                 }
             }
