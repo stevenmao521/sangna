@@ -81,7 +81,7 @@ class Index extends Common{
         #过去一周
         $day_last = strtotime("-7 days",time());
         #幻灯
-        $slide = db("streetgirl")->where("istrash=0 {$whereother}")->order("day_time desc")->limit(4)->select();
+        $slide = db("streetgirl")->where("istrash=0 {$whereother} and cates=3")->order("day_time desc")->limit(4)->select();
         #热门
         #$hot = db("streetgirl")->where("istrash=0 and ishot=1  {$whereother}")->limit(4)->select();
         $hot = db("streetgirl")->where("istrash=0 {$whereother} and createtime>='{$day_last}'")->order("hot desc")->limit(6)->select();
