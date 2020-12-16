@@ -91,7 +91,9 @@ class Index extends Common{
                     $tmp = [];
                     $tmp['id'] = $v['id'];
                     $tmp['img'] = $v1;
-                    $pics_arr[] = $tmp;
+                    if ($v1) {
+                        $pics_arr[] = $tmp;
+                    }
                 }
             }
         }
