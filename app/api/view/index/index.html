@@ -1,7 +1,5 @@
 {include file="common/head"/}
 
-
-
     <!-- 左导航 -->
     {include file="common/nav"/}
     <!-- end sidebar -->
@@ -27,6 +25,48 @@
             color:#00ADEE;
         }
     </style>
+    
+    
+    <center>
+        <a href="" id="barrage_on_off">弹幕区域</a>
+    </center>
+
+    <div class="barrage">
+        <div class="show"> 
+
+        </div>
+    </div>
+
+    <style>
+        .barrage {
+            width:100%;
+            height:230px;
+            margin:0 auto;
+            position:relative;
+        }
+        .barrage .show {
+            width:100%;
+            height:200px;
+            position:fixed;
+            top:150px;
+            left:0;
+        }
+        .barrage .show div {
+            color:#EC7E41;
+            position:absolute;
+            right:0;
+            font-size:25px;
+        }
+        .barrage-txt {
+            width:70%;
+            background-color:#ccc;
+        }
+        .barrage-send {
+            width:25%;
+            cursor:pointer;
+        }
+    </style>
+    
     
     
     <!-- end slide -->
@@ -357,4 +397,15 @@ function ZouMa() {
   });
  }
 }
+
+        $(function(){
+            var div="<div>asdasdasdasdas 2012年12月31日</div>";
+            var width = $(".barrage").width();
+            var height = Math.floor(Math.random()*$(".barrage").height());
+            $(".show").append(div);
+            var length = $('.show div').length;
+            $('.show div').eq(length-1).css({'top':height,'width':$('.show div').eq(length-1).width()});
+            $('.show div').eq(length-1).animate({right:width},12000);
+        });
+
 </script>
