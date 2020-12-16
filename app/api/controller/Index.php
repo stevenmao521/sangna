@@ -111,6 +111,9 @@ class Index extends Common{
         #hs
         #$hs = db("streetgirl")->where("istrash=0 and cates=2 and ishome=1  {$whereother}")->limit(4)->select();
         $hs = db("streetgirl")->where("istrash=0 and cates=2 {$whereother}")->order("day_time desc")->limit(10)->select();
+        foreach ($hs as $k=>$v) {
+            $hs[$k]['title'] = mb_substr($v['title'],0,12);
+        }
         #hs
         #$lf = db("streetgirl")->where("istrash=0 and cates=3 and ishome=1  {$whereother}")->limit(4)->select();
         $lf = db("streetgirl")->where("istrash=0 and cates=3  {$whereother}")->order("day_time desc")->limit(4)->select();
