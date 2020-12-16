@@ -28,29 +28,55 @@
         }
     </style>
     
-    <!-- 滚图 -->
-    <div class="container" style='clear: both;'>
-        <div class="slide">
-            <div class="slide-show owl-carousel owl-theme">
-                {volist name="$slide" id="vo"}
-                <div class="slide-content first-slide">
-                    <div class="mask2"></div>
-                    {if $vo.pic}
-                    <img src="__PUBLIC__/{$vo.pic}" alt="">
-                    {else}
-                    <img src="__STATIC__/sangna/images/default.jpg" alt="">
-                    {/if}
-                    <div class="caption">
-                        <h2>{$vo.title}</h2>
-                        <p>{$vo.day}</p>
-                        <a href="{:url('detail')}?id={$vo.id}"><button class="button">Go</button></a>
-                    </div>
-                </div>
+    
+    <!-- end slide -->
+    <div class="box">  
+        <div style="width: 1000px;" id="boxdiv">
+            <ul>
+                {if $pics_arr}
+                {volist name="pics_arr" id="vo"}
+                <li style="display: block;" title=""><a href="{:url('detail')}?id={$vo.id}">
+                    <img src="__PUBLIC__/{$vo.img}" /></a>
+                </li>
                 {/volist}
-            </div>
+                {/if}
+            </ul>
         </div>
     </div>
-    <!-- end slide -->
+    
+    <style>
+        .box
+        {
+            width: 800px;
+            height: 100px;
+            margin-top: 100px;
+            overflow: hidden;
+        }
+        .box li
+        {
+            width:100px;
+            height:100px;
+            border-style: none;
+            padding:4px;
+        }
+        .box li img
+        {
+            width:96px;
+            height:96px;
+            border-style: none;
+
+        }
+        .box ul
+        {
+            margin: 0px;
+            padding: 0px;
+            list-style-type: none;
+        }
+        .box ul li
+        {
+            float: left;
+        }
+</style>
     
     
     <div class="b-seller segments">
@@ -302,3 +328,33 @@
 </body>
 
 </html>
+
+
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+ new ZouMa().Start();
+});
+function ZouMa() {
+ this.maxLength = 3; //最低显示数   
+ this.Timer = 2000;//计时器间隔时间
+ this.Ul = $(".box ul");
+ var handId;//计时器id
+ var self = this;
+ this.Start = function () {
+  if (self.Ul.children().length < this.maxLength) {
+   self.Ul.append(self.Ul.children().clone());
+  }
+  handId = setInterval(self.Play, self.Timer);
+ }
+ this.Play = function () {
+  var img = self.Ul.children().eq(0);
+  var left = img.children().eq(0).width();
+  img.animate({ "marginLeft": (-1 * left) + "px" }, 600, function () {
+   //appendTo函数是实现走马灯一直不间断播放的秘诀。
+   //目前网上看到的很多走马灯，走到最后一张的时候，会立马闪回第一张，而不是继续从后往前推进，即是没有明白该函数的作用的原因
+   $(this).css("margin-left", "auto").appendTo(self.Ul);
+  });
+ }
+}
+</script>

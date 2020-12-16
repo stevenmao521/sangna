@@ -78,6 +78,24 @@ class Index extends Common{
             $whereother = "";
         }
         
+        #走马灯
+        $loop = db("streetgirl")->where("istrash=0 {$whereother} and cates=2 and pics !=''")->order('rand()')->limit(5)->select();
+        
+        $pics_arr = [];
+        if ($loop) {
+            foreach ($loop as $k=>$v) {
+                $pics = $v['pics'];
+                $pics = substr($pics,0,-1);
+                $arr = explode(";", $pics);
+                foreach ($arr as $k1=>$v1) {
+                    $tmp = [];
+                    $tmp['id'] = $v['id'];
+                    $tmp['img'] = $v1;
+                    $pics_arr[] = $tmp;
+                }
+            }
+        }
+        
         #过去一周
         $day_last = strtotime("-7 days",time());
         #幻灯
@@ -105,7 +123,8 @@ class Index extends Common{
             'street'=>$street,
             'hs'=>$hs,
             'lf'=>$lf,
-            'title'=>$title
+            'title'=>$title,
+            "pics_arr"=>$pics_arr
         ]);
     }
     
