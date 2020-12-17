@@ -18,6 +18,29 @@ class Index extends Common{
         parent::_initialize();
     }
     
+    public function getComment() {
+        $avatar = [
+            "sangna/images/avatar1.jpg",
+            "sangna/images/avatar2.jpg",
+            "sangna/images/avatar3.jpg",
+            "sangna/images/avatar4.jpg",
+            "sangna/images/avatar5.jpg",
+            "sangna/images/avatar6.jpg",
+            "sangna/images/avatar7.jpg",
+            "sangna/images/avatar8.jpg",
+            "sangna/images/avatar9.jpg",
+            "sangna/images/avatar10.jpg",
+        ];
+        
+        $comments = db("comments")->order('rand()')->limit(1)->select();
+        $comments = $comments[0];
+        $rand = array_rand($avatar,1);
+        $comments['avatar'] = $avatar[$rand];
+        $time = time() - 360 * rand(1,900);
+        $comments['time'] = date("m月d日 H:i",$time);
+        return ["comments"=>$comments];
+    }
+    
     #登录
     public function login() {
         $name = mz_filter(input("username"));

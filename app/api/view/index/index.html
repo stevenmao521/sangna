@@ -24,25 +24,12 @@
             text-align: center;
             color:#00ADEE;
         }
-    </style>
-    
-    
-    <center>
-        <a href="" id="barrage_on_off">弹幕区域</a>
-    </center>
-
-    <div class="barrage">
-        <div class="show"> 
-
-        </div>
-    </div>
-
-    <style>
+        
         .barrage {
             width:100%;
             height:230px;
             margin:0 auto;
-            position:relative;
+            position:fixed;
         }
         .barrage .show {
             width:100%;
@@ -65,26 +52,6 @@
             width:25%;
             cursor:pointer;
         }
-    </style>
-    
-    
-    
-    <!-- end slide -->
-    <div class="box">  
-        <div style="width: 1000px;" id="boxdiv">
-            <ul>
-                {if $pics_arr}
-                {volist name="pics_arr" id="vo"}
-                <li style="display: block;" title=""><a href="{:url('detail')}?id={$vo.id}">
-                    <img src="__PUBLIC__/{$vo.img}" /></a>
-                </li>
-                {/volist}
-                {/if}
-            </ul>
-        </div>
-    </div>
-    
-    <style>
         .box
         {
             width: 800px;
@@ -116,8 +83,32 @@
         {
             float: left;
         }
-</style>
+    </style>
     
+    <center>
+        <a href="" id="barrage_on_off">弹幕区域</a>
+    </center>
+
+    <div class="barrage">
+        <div class="show"> 
+
+        </div>
+    </div>
+
+    <!-- end slide -->
+    <div class="box">  
+        <div style="width: 1000px;" id="boxdiv">
+            <ul>
+                {if $pics_arr}
+                {volist name="pics_arr" id="vo"}
+                <li style="display: block;" title=""><a href="{:url('detail')}?id={$vo.id}">
+                    <img src="__PUBLIC__/{$vo.img}" /></a>
+                </li>
+                {/volist}
+                {/if}
+            </ul>
+        </div>
+    </div>
     
     <div class="b-seller segments">
         <div class="container">
@@ -373,39 +364,63 @@
 
 <script language="javascript" type="text/javascript">
     $(document).ready(function () {
- new ZouMa().Start();
-});
-function ZouMa() {
- this.maxLength = 3; //最低显示数   
- this.Timer = 2000;//计时器间隔时间
- this.Ul = $(".box ul");
- var handId;//计时器id
- var self = this;
- this.Start = function () {
-  if (self.Ul.children().length < this.maxLength) {
-   self.Ul.append(self.Ul.children().clone());
-  }
-  handId = setInterval(self.Play, self.Timer);
- }
- this.Play = function () {
-  var img = self.Ul.children().eq(0);
-  var left = img.children().eq(0).width();
-  img.animate({ "marginLeft": (-1 * left) + "px" }, 600, function () {
-   //appendTo函数是实现走马灯一直不间断播放的秘诀。
-   //目前网上看到的很多走马灯，走到最后一张的时候，会立马闪回第一张，而不是继续从后往前推进，即是没有明白该函数的作用的原因
-   $(this).css("margin-left", "auto").appendTo(self.Ul);
-  });
- }
-}
+    new ZouMa().Start();
+   });
+   function ZouMa() {
+    this.maxLength = 3; //最低显示数   
+    this.Timer = 2000;//计时器间隔时间
+    this.Ul = $(".box ul");
+    var handId;//计时器id
+    var self = this;
+    this.Start = function () {
+     if (self.Ul.children().length < this.maxLength) {
+      self.Ul.append(self.Ul.children().clone());
+     }
+     handId = setInterval(self.Play, self.Timer);
+    }
+    this.Play = function () {
+     var img = self.Ul.children().eq(0);
+     var left = img.children().eq(0).width();
+     img.animate({ "marginLeft": (-1 * left) + "px" }, 600, function () {
+      //appendTo函数是实现走马灯一直不间断播放的秘诀。
+      //目前网上看到的很多走马灯，走到最后一张的时候，会立马闪回第一张，而不是继续从后往前推进，即是没有明白该函数的作用的原因
+      $(this).css("margin-left", "auto").appendTo(self.Ul);
+     });
+    }
+   }
 
-        $(function(){
-            var div="<div>asdasdasdasdas 2012年12月31日</div>";
-            var width = $(".barrage").width();
-            var height = Math.floor(Math.random()*$(".barrage").height());
-            $(".show").append(div);
-            var length = $('.show div').length;
-            $('.show div').eq(length-1).css({'top':height,'width':$('.show div').eq(length-1).width()});
-            $('.show div').eq(length-1).animate({right:width},12000);
+    var id = setInterval(function(){
+        $.ajax({
+            //请求方式
+            type : "POST",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //请求地址
+            url : "{:url('Index/getComment')}",
+            //数据，json字符串
+            success : function(result) {
+                var div="<div><div style='padding:2px;border-radius:8px;min-width:240px;opacity:0.7;height:46px;background:#000;position:relative;'><img src='__STATIC__/"+result.comments.avatar+"' width=40 height=40 style='border-radius:4px;'><font style='position:absolute;left:44px;top:0px;font-size:13px;color:#888;width:200px;'>"+result.comments.nickname+"  "+result.comments.time+"</font><span>&nbsp;&nbsp;"+result.comments.contents+"</span></div></div>";
+                
+                
+        
+                var width = $(".barrage").width();
+                var height = Math.floor(Math.random()*$(".barrage").height());
+                $(".show").append(div);
+                var length = $('.show div').length;
+                $('.show div').eq(length-1).css({'top':height,'width':$('.show div').eq(length-1).width()});
+                $('.show div').eq(length-1).animate({right:width},12000);
+                
+                
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                
+            }
         });
-
+        
+        
+        
+        
+    }, 3600)
+    
 </script>
