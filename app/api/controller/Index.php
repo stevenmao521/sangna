@@ -38,6 +38,7 @@ class Index extends Common{
         $comments['avatar'] = $avatar[$rand];
         $time = time() - 360 * rand(1,900);
         $comments['time'] = date("m月d日 H:i",$time);
+        $comments['contents'] = strip_tags($comments['contents']);
         return ["comments"=>$comments];
     }
     
