@@ -399,28 +399,19 @@
             url : "{:url('Index/getComment')}",
             //数据，json字符串
             success : function(result) {
-                var div="<div><div style='padding:2px;border-radius:8px;min-width:240px;opacity:0.7;height:46px;background:#000;position:relative;'><img src='__STATIC__/"+result.comments.avatar+"' width=40 height=40 style='border-radius:4px;'><font style='position:absolute;left:44px;top:0px;font-size:13px;color:#888;width:200px;'>"+result.comments.nickname+"  "+result.comments.time+"</font><span>&nbsp;&nbsp;"+result.comments.contents+"</span></div></div>";
-                
-                
-        
+                var div="<div><div style='overflow:hidden;padding:2px;border-radius:8px;min-width:220px;opacity:0.7;height:46px;background:#000;position:relative;'><img src='__STATIC__/"+result.comments.avatar+"' width=40 height=40 style='border-radius:4px;'><font style='position:absolute;left:44px;top:0px;font-size:13px;color:#888;width:200px;'>"+result.comments.nickname+"  "+result.comments.time+"</font><span style='posistion:absolute;left:44px;top:22px;font-size:18px;'>&nbsp;&nbsp;"+result.comments.contents+"</span></div></div>";
                 var width = $(".barrage").width();
                 var height = Math.floor(Math.random()*$(".barrage").height());
                 $(".show").append(div);
                 var length = $('.show div').length;
                 $('.show div').eq(length-1).css({'top':height,'width':$('.show div').eq(length-1).width()});
-                $('.show div').eq(length-1).animate({right:width},12000);
-                
-                
+                $('.show div').eq(length-1).animate({right:width},14000);
             },
             //请求失败，包含具体的错误信息
             error : function(e){
                 
             }
         });
-        
-        
-        
-        
     }, 3600)
     
 </script>
