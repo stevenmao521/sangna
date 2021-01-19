@@ -94,6 +94,15 @@ class Index extends Common{
     }
     
     public function index() {
+        
+        
+        return $this->fetch('',[
+            
+        ]);
+    }
+    
+    /*
+    public function index() {
         $city = session("city");
         
         if ($city > 0) {
@@ -156,6 +165,7 @@ class Index extends Common{
             "pics_arr"=>$pics_arr
         ]);
     }
+    */
     
     public function detail() {
         $id = input("id");
