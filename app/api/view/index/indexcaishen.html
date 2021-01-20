@@ -1,0 +1,109 @@
+{include file="common/head"/}
+<style>
+    #demo {
+        list-style: none;
+        height: 30px;
+        overflow: hidden;
+    }
+</style>
+<div class="layui-container" id="main-box">  
+    <div style="width;100%;text-align:center;"><img src="__STATIC__/sangna/images/caishen.jpg"></div>
+    <div>
+        <div style="width;100%;text-align:center;">
+    <ul id="demo" style='margin-align:center;'>
+        <li style='color:orange;'>** 0.01元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.1元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.2元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.01元得到财神爷的关照</li>
+        <li style='color:orange;'>** 6.6元得到财神爷的关照</li>
+        <li style='color:orange;'>** 1元得到财神爷的关照</li>
+        <li style='color:orange;'>** 8元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.01元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.01元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.1元得到财神爷的关照</li>
+        <li style='color:orange;'>** 50元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.01元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.01元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.01元得到财神爷的关照</li>
+        <li style='color:orange;'>** 1元得到财神爷的关照</li>
+        <li style='color:orange;'>** 8元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.6元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.66元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.1元得到财神爷的关照</li>
+        <li style='color:orange;'>** 1元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.01元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.1元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.1元得到财神爷的关照</li>
+        <li style='color:orange;'>** 6.01元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.01元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.1元得到财神爷的关照</li>
+        <li style='color:orange;'>** 10元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.01元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.01元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.01元得到财神爷的关照</li>
+        <li style='color:orange;'>** 1元得到财神爷的关照</li>
+        <li style='color:orange;'>** 8元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.6元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.66元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.1元得到财神爷的关照</li>
+        <li style='color:orange;'>** 1元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.01元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.1元得到财神爷的关照</li>
+        <li style='color:orange;'>** 0.1元得到财神爷的关照</li>
+    </ul>
+        </div>
+        
+    <div style="padding:10px;"><h5 >这个财神爷相传是光绪年间出土的雕像，很灵验，可以保佑你财源滚滚，看到的人不祭拜的今年会损财！</h5></div>
+    <div style="padding:5px;"><h5 >钱多钱少是个信念，只要心诚，就会发财！</h5></div>
+    </div>
+    <div style="width;100%;text-align:center;"><img src="__STATIC__/sangna/images/zfb.jpg" style="width:200px;"></div>
+</div>
+{include file="common/foot"/}
+
+<script>
+</script> 
+</body>
+</html>
+<script>
+    function customScroll(id, delay = 150) {
+        if (!id) {
+            throw new Error("选择器不存在");
+        }
+
+        let timer = null;
+
+        let _elem = document.getElementById(id);
+
+        let c = function(){
+            if (timer) {
+                clearInterval(timer);
+            }
+            _elem.onmouseover = function () {
+                clearInterval(timer);
+            }
+            _elem.onmouseout = function () {
+                c();
+            }
+
+            if (_elem.scrollHeight >= _elem.offsetHeight) {
+                timer = setInterval(() => {
+                    if(_elem.scrollTop >= _elem.scrollHeight){
+                        _elem.scrollTop = 0;
+                    } else {
+                        if (_elem.scrollTop >= _elem.children[0].offsetHeight) {
+                            _elem.append(_elem.children[0]);
+                        }
+                        _elem.scrollTop++;
+                    }
+                }, delay);
+            }
+        }
+        return c;
+    }
+
+    let callback = customScroll('demo');
+    callback();
+</script>
+
+
+
